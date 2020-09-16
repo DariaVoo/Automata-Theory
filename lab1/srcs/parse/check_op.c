@@ -3,12 +3,14 @@
 //
 #include "rpn.h"
 
-void check_op(t_operation a, t_stack_op *stack, char *out, int i)
+int check_op(t_operation *a, t_stack_op *stack, char *out, int *j)
 {
 	t_operation b;
+	int i;
 
-	b = *stack;
-	while (a.priority <= b.priority)
+	i = *j;
+	b = stack->op;
+	while (a->priority <= b.priority)
 	{
 		if (b.name == ')')
 		{
@@ -18,7 +20,7 @@ void check_op(t_operation a, t_stack_op *stack, char *out, int i)
 				i++;
 				out[i] = ' ';
 				i++;
-				stack = stack.previous;
+				stack = stack->previous;
 			}
 		}
 		else {
@@ -26,8 +28,12 @@ void check_op(t_operation a, t_stack_op *stack, char *out, int i)
 			i++;
 			out[i] = ' ';
 			i++;
-			stack = stack.previous;
+			stack = stack->previous;
+			if (b.priority == 3)
+				return (1);
 		}
 	}
+	*j = i;
+	return (0);
 }
 

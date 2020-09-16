@@ -11,7 +11,7 @@ t_operation *is_op(char x)
 	while (g_opp[i].name != '\0')
 	{
 		if (x == g_opp[i].name)
-			return (g_opp[i]);
+			return (&g_opp[i]);
 		i++;
 	}
 	return (NULL);

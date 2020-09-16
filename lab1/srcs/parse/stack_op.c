@@ -1,12 +1,13 @@
 //
 // Created by snorcros on 9/10/20.
 //
+#include "rpn.h"
 
-void		push_op(t_stack_op **begin_list, t_operation data)
+void		push_op(t_stack_op **begin_list, t_operation *data)
 {
 	t_stack_op	*buff;
 
-	buff = ft_create_stop(data);
+	buff = create_stop(*data);
 	if (*begin_list != 0)
 		buff->previous = *begin_list;
 	*begin_list = buff;
