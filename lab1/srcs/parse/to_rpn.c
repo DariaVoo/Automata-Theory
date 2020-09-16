@@ -1,4 +1,4 @@
-#include rpn.h
+#include "rpn.h"
 
 char *to_rpn(char *str)
 {

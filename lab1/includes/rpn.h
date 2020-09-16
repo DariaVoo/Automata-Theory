@@ -4,6 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft.h"
+#include "libftprintf.h"
+#include "error_msg.h"
+
+# define USAGE "./rpn '(1 + 2) - 3' -rpn"
+
 
 typedef struct	s_operation
 {
@@ -37,6 +42,7 @@ void						remove_op(t_stack_op **op);
 void						push_op(t_stack_op **begin_list,
 									   t_operation data);
 
+void ft_exit(char *error);
 int is_digit(char x);
 int is_op(char x);
 

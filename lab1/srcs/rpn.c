@@ -70,6 +70,3 @@ int	main(int ac, char **av)
 		printf("Error\n");
 	return (0);
 }
-
-
-
