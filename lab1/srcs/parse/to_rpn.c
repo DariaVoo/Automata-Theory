@@ -14,9 +14,9 @@ char *to_rpn(char *str, char *end)
 	{
 		while (*str == ' ')
 			str++;
-		if (is_digit(*str) || (*str == '-' && is_digit(*(str + 1))  || (*str == '.' && is_digit(*(str + 1)))))
+		if (is_digit(*str) || (*str == '-' && is_digit(*(str + 1)))  || (*str == '.' && is_digit(*(str + 1))))
 		{
-			while (*str != ' ' && *str)
+			while (*str && *str != ' ' && *str != ')'  && *str != '(')
 			{
 				out[i] = *str;
 				i++;
@@ -27,7 +27,7 @@ char *to_rpn(char *str, char *end)
 		}
 		else if ((op = is_op(*str)) != '\0')
 		{
-			if (check_op(op, stack, out, &i))
+			if (check_op(op, &stack, out, &i))
 			{
 				*str += 2; // skip l(
 				char *index;
@@ -51,7 +51,7 @@ char *to_rpn(char *str, char *end)
 				ft_strcpy(&out[i], b_out);
 				i += ft_strlen(a_out);
 			}
-			if (!stack)
+			if (!stack && op->priority != 0)
 				push_op(&stack, op);
 			*str++;
 		}
