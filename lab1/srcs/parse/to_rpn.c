@@ -11,6 +11,24 @@ void	add_delim_out(char *out, int *j)
 	*j = i;
 }
 
+char	*get_arg(char *out, char * str, int *j, char del)
+{
+	char *index;
+	char *b_out;
+	int i;
+
+	i = *j;
+	index = ft_strrchr(str, del);
+	if (index == (char*)0)
+		ft_exit(INVALID_PARAMS_FUN);
+	b_out = to_rpn(str, index);
+	ft_strcpy(&out[i], b_out);
+	i += ft_strlen(b_out);
+	add_delim_out(out, &i);
+	*j = i;
+	return (index);
+}
+
 char *to_rpn(char *str, char *end)
 {
 	int i;
@@ -45,32 +63,10 @@ char *to_rpn(char *str, char *end)
 			if (check_op(op, &stack, out, &i))
 			{
 				str += 2; // skip l(
-				char *index;
-
-				index = ft_strrchr(str, ',');
-				if (index == (char*)0)
-					ft_exit(INVALID_PARAMS_FUN);
-				char *a_out = to_rpn(str, index);
-				ft_strcpy(&out[i], a_out);
-				i += ft_strlen(a_out);
-
-				add_delim_out(out, &i);
-
-				str = index;
+				str = get_arg(out, str, &i, ',') + 1;
 				while (*str && (*str == ',' || *str == ' '))
 					str++;
-
-				index = ft_strrchr(str, ')');
-				if (index == (char*)0)
-					ft_exit(INVALID_PARAMS_FUN);
-				char *b_out = to_rpn(str, index);
-				ft_strcpy(&out[i], b_out);
-				i += ft_strlen(b_out);
-
-				add_delim_out(out, &i);
-
-				str += ft_strlen(b_out) - 1;
-
+				str = get_arg(out, str, &i, ')') + 1;
 			}
 			str++;
 		}

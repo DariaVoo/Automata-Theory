@@ -23,30 +23,3 @@ l 1 3 + _ 2 3 / 5 4 + *
 l 1 3 + _ 2 3 / 5 4 + * _ 10 +
 
 
-
-str += 2; // skip l(
-				char *index;
-
-				index = ft_strrchr(str, ',');
-				if (index == (char*)0)
-					ft_exit(INVALID_PARAMS_FUN);
-				char *a_out = to_rpn(str, index);
-				ft_strcpy(&out[i], a_out);
-				i += ft_strlen(a_out);
-
-				add_delim_out(out, &i);
-
-				str = index;
-				while (*str && (*str == ',' || *str == ' '))
-					str++;
-
-				index = ft_strrchr(str, ')');
-				if (index == (char*)0)
-					ft_exit(INVALID_PARAMS_FUN);
-				char *b_out = to_rpn(str, index);
-				ft_strcpy(&out[i], b_out);
-				i += ft_strlen(b_out);
-
-				str += ft_strlen(b_out) - 1;
-
-				add_delim_out(out, &i);
