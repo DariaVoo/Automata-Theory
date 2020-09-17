@@ -40,7 +40,10 @@ void		remove_op(t_stack_op **op);
 void		push_op(t_stack_op **begin_list,
 									   t_operation *data);
 int			check_op(t_operation *a, t_stack_op **stack, char *out, int *j);
-int op_to_out(char op_name, char *out, int i);
+int			op_to_out(char op_name, char *out, int i);
+void		add_delim_out(char *out, int *j);
+char		*get_arg(char *out, char * str, int *j, char del);
+
 
 void		ft_exit(char *error);
 int			is_digit(char x);
