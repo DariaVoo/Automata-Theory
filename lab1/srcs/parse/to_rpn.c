@@ -4,6 +4,7 @@ char *to_rpn(char *str, char *end)
 {
 	int i;
 	char *out;
+	int	flag;
 	t_stack_op *stack;
 	t_operation *op;
 
@@ -12,24 +13,24 @@ char *to_rpn(char *str, char *end)
 	out = ft_strnew(ft_strlen(str));
 	while (*str && str != end)
 	{
+		flag = 0;
 		while (*str == ' ')
 			str++;
-		if (is_digit(*str) || (*str == '-' && is_digit(*(str + 1)))  || (*str == '.' && is_digit(*(str + 1))))
+		while (is_digit(*str) || (*str == '-' && is_digit(*(str + 1)))  || (*str == '.' && is_digit(*(str + 1))))
 		{
-			while (*str && *str != ' ' && *str != ')'  && *str != '(')
-			{
-				out[i] = *str;
-				i++;
-				out[i] = ' ';
-				i++;
-				str++;
-			}
+			flag = 1;
+			out[i] = *str;
+			i++;
+			out[i] = ' ';
+			i++;
+			str++;
 		}
-		else if ((op = is_op(*str)) != '\0')
+		if ((op = is_op(*str)) != '\0')
 		{
+			flag = 1;
 			if (check_op(op, &stack, out, &i))
 			{
-				*str += 2; // skip l(
+				str += 2; // skip l(
 				char *index;
 
 				index = ft_strrchr(str, ',');
@@ -39,23 +40,24 @@ char *to_rpn(char *str, char *end)
 				str = index;
 
 				ft_strcpy(&out[i], a_out);
-				i += ft_strlen(a_out);
+				i += ft_strlen(a_out) - 1;
 				out[i] = '_';
 				i++;
 
-				index = ft_strrchr(str, ',');
+				index = ft_strrchr(str, ')');
+				while (*str && (*str == ',' || *str == ' '))
+					str++;
 				if (index == (char*)0)
 					ft_exit(INVALID_PARAMS_FUN);
 				char *b_out = to_rpn(str, index);
 
 				ft_strcpy(&out[i], b_out);
 				i += ft_strlen(a_out);
+				str += ft_strlen(a_out) - 1;
 			}
-			if (!stack && op->priority != 0)
-				push_op(&stack, op);
-			*str++;
+			str++;
 		}
-		else
+		if (!flag)
 		{
 			ft_exit(INVALID_INPUT);
 			return (NULL);
