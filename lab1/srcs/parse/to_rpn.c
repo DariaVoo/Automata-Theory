@@ -1,5 +1,16 @@
 #include "rpn.h"
 
+void	add_delim_out(char *out, int *j)
+{
+	int i = *j;
+
+	out[i] = '_';
+	i++;
+	out[i] = ' ';
+	i++;
+	*j = i;
+}
+
 char *to_rpn(char *str, char *end)
 {
 	int i;
@@ -41,10 +52,8 @@ char *to_rpn(char *str, char *end)
 
 				ft_strcpy(&out[i], a_out);
 				i += ft_strlen(a_out);
-				out[i] = '_';
-				i++;
-				out[i] = ' ';
-				i++;
+
+				add_delim_out(out, &i);
 
 				index = ft_strrchr(str, ')');
 				while (*str && (*str == ',' || *str == ' '))
@@ -57,10 +66,8 @@ char *to_rpn(char *str, char *end)
 				i += ft_strlen(b_out);
 				str += ft_strlen(b_out) - 1;
 
-				out[i] = '_';
-				i++;
-				out[i] = ' ';
-				i++;
+				add_delim_out(out, &i);
+
 			}
 			str++;
 		}
