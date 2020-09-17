@@ -32,20 +32,9 @@ double		ft_mod(double a, double b);
 double		ft_div(double a, double b);
 double		ft_log(double base, double b);
 
-t_operation g_opp[] =
-{
-		{'(', -1, NULL},
-		{')', 0, NULL},
-		{'-', 1, ft_sub},
-		{'+', 1, ft_add},
-		{'*', 2, ft_mul},
-		{'/', 2, ft_div},
-		{'%', 2, ft_mod},
-		{'l', 3, ft_log},
-		{'\0', 2, NULL}
-};
 
 
+char		*to_rpn(char *str, char *end);
 t_stack_op	*create_stop(t_operation data);
 void		remove_op(t_stack_op **op);
 void		push_op(t_stack_op **begin_list,

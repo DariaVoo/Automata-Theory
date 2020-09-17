@@ -2,6 +2,7 @@
 // Created by snorcros on 9/10/20.
 //
 #include "rpn.h"
+#include "operations.h"
 
 t_operation *is_op(char x)
 {

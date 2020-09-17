@@ -6,5 +6,6 @@
 # define INVALID_INPUT "What is this all about? It's not even an operation."
 # define NO_OPEN_BRACKET "No opening bracket \tyou lost ("
 # define NO_CLOSE_BRACKET "No closing bracket \tyou lost )"
+# define INVALID_PARAMS_FUN "Invalid arguments in the function of 2 variables."
 
 #endif

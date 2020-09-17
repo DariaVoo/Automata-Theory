@@ -9,19 +9,26 @@ int check_op(t_operation *a, t_stack_op *stack, char *out, int *j)
 	int i;
 
 	i = *j;
-	b = stack->op;
-	while (a->priority <= b.priority)
+	while (a->priority <= b.priority && stack)
 	{
-		if (b.name == ')')
+		b = stack->op;
+		if (b.priority == 0) //if )
 		{
-			while (b.name != '(')
+			while (b.priority != -1 && stack) // while not (
 			{
+				stack = stack->previous;
+				b = stack->op;
+
 				out[i] = b.name;
 				i++;
 				out[i] = ' ';
 				i++;
-				stack = stack->previous;
 			}
+			if (b.name != '(')
+				ft_exit(NO_OPEN_BRACKET);
+			stack = stack->previous;
+			*j = i;
+			return (0);
 		}
 		else {
 			out[i] = b.name;
@@ -29,11 +36,11 @@ int check_op(t_operation *a, t_stack_op *stack, char *out, int *j)
 			out[i] = ' ';
 			i++;
 			stack = stack->previous;
+			*j = i;
 			if (b.priority == 3)
 				return (1);
 		}
 	}
-	*j = i;
 	return (0);
 }
 

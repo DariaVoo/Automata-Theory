@@ -64,9 +64,9 @@ int	rpn_calc(char *str)
 	return (0);
 }
 
-int	main(int ac, char **av)
-{
-	if (ac != 2 || rpn_calc(av[1]) == -1)
-		printf("Error\n");
-	return (0);
-}
+//int	main(int ac, char **av)
+//{
+//	if (ac != 2 || rpn_calc(av[1]) == -1)
+//		printf("Error\n");
+//	return (0);
+//}

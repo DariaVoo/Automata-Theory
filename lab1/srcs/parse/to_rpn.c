@@ -1,6 +1,6 @@
 #include "rpn.h"
 
-char *to_rpn(char *str)
+char *to_rpn(char *str, char *end)
 {
 	int i;
 	char *out;
@@ -10,7 +10,7 @@ char *to_rpn(char *str)
 	i = 0;
 	stack = NULL;
 	out = ft_strnew(ft_strlen(str));
-	while (*str)
+	while (*str && str != end)
 	{
 		if (is_digit(*str) || (*str == '-' && is_digit(*(str + 1))  || (*str == '.' && is_digit(*(str + 1)))))
 		{
@@ -28,10 +28,26 @@ char *to_rpn(char *str)
 			if (check_op(op, stack, out, &i))
 			{
 				*str += 2; // skip l(
-				char *a_out = to_rpn(ft_strcat(*str, ','));
-				char *b_out = to_rpn(ft_strcat(*str, ')'));
-				//Записываем две эти строки в out разделяя _ и заканчивая op.name
+				char *index;
 
+				index = ft_strrchr(str, ',');
+				if (index == (char*)0)
+					ft_exit(INVALID_PARAMS_FUN);
+				char *a_out = to_rpn(str, index);
+				str = index;
+
+				ft_strcpy(&out[i], a_out);
+				i += ft_strlen(a_out);
+				out[i] = '_';
+				i++;
+
+				index = ft_strrchr(str, ',');
+				if (index == (char*)0)
+					ft_exit(INVALID_PARAMS_FUN);
+				char *b_out = to_rpn(str, index);
+
+				ft_strcpy(&out[i], b_out);
+				i += ft_strlen(a_out);
 			}
 			*str++;
 		}
@@ -42,6 +58,6 @@ char *to_rpn(char *str)
 		}
 
 	}
-
+	return (out);
 }
 

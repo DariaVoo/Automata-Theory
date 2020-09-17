@@ -47,7 +47,8 @@ double		ft_log(double base, double b)
 {
 	double log_base;
 
-	if ((log_base = log(base)) == 0)
+	log_base = log(base);
+	if (log_base == 0)
 	{
 		ft_exit(ZERO_DIVISION);
 		return (0);
