@@ -32,9 +32,12 @@ char *to_rpn(char *str, char *end)
 			flag = 1;
 			out[i] = *str;
 			i++;
+			str++;
+		}
+		if (flag)
+		{
 			out[i] = ' ';
 			i++;
-			str++;
 		}
 		if (str != end && (op = is_op(*str)) != '\0')
 		{
@@ -48,25 +51,25 @@ char *to_rpn(char *str, char *end)
 				if (index == (char*)0)
 					ft_exit(INVALID_PARAMS_FUN);
 				char *a_out = to_rpn(str, index);
-				str = index;
-
 				ft_strcpy(&out[i], a_out);
 				i += ft_strlen(a_out);
 
 				add_delim_out(out, &i);
 
-				index = ft_strrchr(str, ')');
+				str = index;
 				while (*str && (*str == ',' || *str == ' '))
 					str++;
+
+				index = ft_strrchr(str, ')');
 				if (index == (char*)0)
 					ft_exit(INVALID_PARAMS_FUN);
 				char *b_out = to_rpn(str, index);
-
 				ft_strcpy(&out[i], b_out);
 				i += ft_strlen(b_out);
-				str += ft_strlen(b_out) - 1;
 
 				add_delim_out(out, &i);
+
+				str += ft_strlen(b_out) - 1;
 
 			}
 			str++;
