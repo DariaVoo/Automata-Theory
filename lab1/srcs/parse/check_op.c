@@ -24,7 +24,7 @@ int check_op(t_operation *a, t_stack_op **stack, char *out, int *j)
 
 	if (a->priority == 0) //if )
 	{
-		while (b.priority != -1 && stack) // while not (
+		while (b.priority != -1 && *stack) // while not (
 		{
 			i = op_to_out(b.name, out, i);
 			remove_op(stack);
@@ -37,14 +37,15 @@ int check_op(t_operation *a, t_stack_op **stack, char *out, int *j)
 		return (0);
 	}
 
-	while (a->priority <= b.priority && stack)
+	while (a->priority != -1&& a->priority <= b.priority && *stack)
 	{
 		i = op_to_out(b.name, out, i);
 		remove_op(stack);
 		*j = i;
 		if (b.priority == 3)
 			return (1);
-		b = (*stack)->op;
+		if (*stack)
+			b = (*stack)->op;
 	}
 
 	if (a->priority != 0) // не добавляем )
