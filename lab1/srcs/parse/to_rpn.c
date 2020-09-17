@@ -25,7 +25,7 @@ char *to_rpn(char *str, char *end)
 			i++;
 			str++;
 		}
-		if ((op = is_op(*str)) != '\0')
+		if (str != end && (op = is_op(*str)) != '\0')
 		{
 			flag = 1;
 			if (check_op(op, &stack, out, &i))
@@ -40,8 +40,10 @@ char *to_rpn(char *str, char *end)
 				str = index;
 
 				ft_strcpy(&out[i], a_out);
-				i += ft_strlen(a_out) - 1;
+				i += ft_strlen(a_out);
 				out[i] = '_';
+				i++;
+				out[i] = ' ';
 				i++;
 
 				index = ft_strrchr(str, ')');
@@ -52,8 +54,13 @@ char *to_rpn(char *str, char *end)
 				char *b_out = to_rpn(str, index);
 
 				ft_strcpy(&out[i], b_out);
-				i += ft_strlen(a_out);
-				str += ft_strlen(a_out) - 1;
+				i += ft_strlen(b_out);
+				str += ft_strlen(b_out) - 1;
+
+				out[i] = '_';
+				i++;
+				out[i] = ' ';
+				i++;
 			}
 			str++;
 		}
