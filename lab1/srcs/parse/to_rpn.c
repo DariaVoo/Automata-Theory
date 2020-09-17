@@ -12,19 +12,21 @@ char *to_rpn(char *str, char *end)
 	out = ft_strnew(ft_strlen(str));
 	while (*str && str != end)
 	{
+		while (*str == ' ')
+			str++;
 		if (is_digit(*str) || (*str == '-' && is_digit(*(str + 1))  || (*str == '.' && is_digit(*(str + 1)))))
 		{
 			while (*str != ' ' && *str)
 			{
 				out[i] = *str;
 				i++;
+				out[i] = ' ';
+				i++;
 				str++;
 			}
 		}
 		else if ((op = is_op(*str)) != '\0')
 		{
-			if (!stack)
-				push_op(&stack, op);
 			if (check_op(op, stack, out, &i))
 			{
 				*str += 2; // skip l(
@@ -49,6 +51,8 @@ char *to_rpn(char *str, char *end)
 				ft_strcpy(&out[i], b_out);
 				i += ft_strlen(a_out);
 			}
+			if (!stack)
+				push_op(&stack, op);
 			*str++;
 		}
 		else
@@ -56,7 +60,12 @@ char *to_rpn(char *str, char *end)
 			ft_exit(INVALID_INPUT);
 			return (NULL);
 		}
-
+	}
+	while (stack)
+	{
+		op_to_out((*stack).op.name, out, i);
+		i++;
+		remove_op(&stack);
 	}
 	return (out);
 }
