@@ -34,12 +34,13 @@ char *to_rpn(char *str, char *end)
 			if (check_op(op, &stack, out, &i))
 			{
 				str += 2; // skip l(
-				str = get_arg(out, str, &i, ',') + 1;
+				str = get_arg_str(out, str, &i, ',') + 1;
 				while (*str && (*str == ',' || *str == ' '))
 					str++;
-				str = get_arg(out, str, &i, ')') + 1;
+				str = get_arg_str(out, str, &i, ')') + 1;
 			}
-			str++;
+			if (*str)
+				str++;
 		}
 		if (!flag)
 		{

@@ -42,9 +42,10 @@ void		push_op(t_stack_op **begin_list,
 int			check_op(t_operation *a, t_stack_op **stack, char *out, int *j);
 int			op_to_out(char op_name, char *out, int i);
 void		add_delim_out(char *out, int *j);
-char		*get_arg(char *out, char * str, int *j, char del);
+char		*get_arg_str(char *out, char * str, int *j, char del);
+double		get_arg(char **str);
 
-int			rpn_calc(char *str);
+double rpn_calc(char *str, char *end);
 
 void		ft_exit(char *error);
 int			is_digit(char x);

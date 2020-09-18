@@ -3,7 +3,7 @@
 //
 #include "rpn.h"
 
-char	*get_arg(char *out, char * str, int *j, char del)
+char	*get_arg_str(char *out, char *str, int *j, char del)
 {
 	char *index;
 	char *b_out;
@@ -19,4 +19,15 @@ char	*get_arg(char *out, char * str, int *j, char del)
 	add_delim_out(out, &i);
 	*j = i;
 	return (index);
+}
+
+double get_arg(char **str)
+{
+	int		a;
+	char	*index;
+
+	index = ft_strchr(*str, '_');
+	a  = rpn_calc(*str, index);
+	*str = index + 1;
+	return (a);
 }

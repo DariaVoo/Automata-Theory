@@ -7,5 +7,5 @@
 # define NO_OPEN_BRACKET "No opening bracket: you lost ("
 # define NO_CLOSE_BRACKET "No closing bracket: you lost )"
 # define INVALID_PARAMS_FUN "Invalid arguments in the function of 2 variables."
-
+# define MANY_OPERANDS "Too many operands"
 #endif

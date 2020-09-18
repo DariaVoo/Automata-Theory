@@ -5,49 +5,25 @@ int is_digit(char x)
 	return (x >= '0' && x <= '9' || x == '.');
 }
 
-//int is_op_(char x)
-//{
-//	return (x == '+' || x == '-' || x == '*' || x == '/' || x == '%' || x == 'l');
-//}
-
-double	do_op(double *cur, char op)
+double	doo_op(double *cur, t_operation *op)
 {
 	double a = *cur;
 	double b = *(cur + 1);
 
-	if (op == '+')
-		*cur = a + b;
-	else if (op == '-')
-		*cur = a - b;
-	else if (op == '*')
-		*cur = a * b;
-	else if (b == 0)
-		return (-1);
-	else if (op == '/')
-		*cur = a / b;
-	else if (op == '%')
-		*cur = (int)a % (int)b;
-	return (0);
+	if (op->priority != 3)
+	{
+		*cur = op->fun(a, b);
+		return (*cur);
+	}
 }
 
-double	doo_op(double *cur, t_operation op)
-{
-	double a = *cur;
-	double b = *(cur + 1);
-
-	if (op.priority != 3)
-		return (op.fun(a, b));
-
-
-}
-
-int	rpn_calc(char *str)
+double rpn_calc(char *str, char *end)
 {
 	double num[4096];
-//	t_operation *op;
+	t_operation *op;
 	int i = -1;
 
-	while (*str)
+	while (str && *str && str != end)
 	{
 		if (is_digit(*str) || (*str == '-' && is_digit(*(str + 1))))
 		{
@@ -55,32 +31,37 @@ int	rpn_calc(char *str)
 			if (num[i] == 0 && *str != '0')
 				ft_exit(INVALID_OPERAND);
 			if (*str == '-')
-				++str;
+				str++;
 			while (*str != ' ' && *str)
-				++str;
+				str++;
 		}
-		else if (is_op(*str) && i > 0)
+		else if ((op = is_op(*str)) && (i > 0 || op->priority == 3))
 		{
-			--i;
-			if (do_op(num + i, *str) == -1)
-				return (-1);
-			++str;
+			i--;
+			if (op->priority == 3)
+			{
+				str++;
+				int a, b;
+
+				if (i < 0)
+					i = 0;
+				a = get_arg(&str);
+				b = get_arg(&str);
+				num[i] = op->fun(a, b);
+			}
+			else
+			{
+				doo_op(num + i, op);
+				str++;
+			}
 		}
-		if (*str != '\0' && *str != ' ')
-			return (-1);
-		while (*str != '\0' && *str == ' ')
-			++str;
+		if (*str != '\0' && *str != ' ' && *str != '_')
+			ft_exit(INVALID_INPUT);
+		while (*str != '\0' && str != end && (*str == ' ' || *str == '_'))
+			str++;
 	}
 
 	if (i != 0)
-		return (-1);
-	printf("%f\n", num[i]);
-	return (0);
+		ft_exit(MANY_OPERANDS);
+	return (num[i]);
 }
-
-//int	main(int ac, char **av)
-//{
-//	if (ac != 2 || rpn_calc(av[1]) == -1)
-//		printf("Error\n");
-//	return (0);
-//}

@@ -7,11 +7,14 @@ int	main(int argc, char **argv)
 {
 	char *out;
 	char *end;
+	double ans;
 
 	if (argc != 2)
 		ft_printf("Usage:%s\n", USAGE);
 	out = to_rpn(argv[1], NULL);
 	ft_printf("%s\n", out);
-//	rpn_calc(out);
+	ans = rpn_calc(out, NULL);
+	printf("%f\n", ans);
+	free(out);
 	return (0);
 }
