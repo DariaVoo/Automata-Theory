@@ -5,10 +5,10 @@ int is_digit(char x)
 	return (x >= '0' && x <= '9' || x == '.');
 }
 
-int is_op_(char x)
-{
-	return (x == '+' || x == '-' || x == '*' || x == '/' || x == '%' || x == 'l');
-}
+//int is_op_(char x)
+//{
+//	return (x == '+' || x == '-' || x == '*' || x == '/' || x == '%' || x == 'l');
+//}
 
 double	do_op(double *cur, char op)
 {
@@ -30,9 +30,21 @@ double	do_op(double *cur, char op)
 	return (0);
 }
 
+double	doo_op(double *cur, t_operation op)
+{
+	double a = *cur;
+	double b = *(cur + 1);
+
+	if (op.priority != 3)
+		return (op.fun(a, b));
+
+
+}
+
 int	rpn_calc(char *str)
 {
 	double num[4096];
+//	t_operation *op;
 	int i = -1;
 
 	while (*str)
@@ -40,12 +52,14 @@ int	rpn_calc(char *str)
 		if (is_digit(*str) || (*str == '-' && is_digit(*(str + 1))))
 		{
 			num[++i] = atof(str);
+			if (num[i] == 0 && *str != '0')
+				ft_exit(INVALID_OPERAND);
 			if (*str == '-')
 				++str;
 			while (*str != ' ' && *str)
 				++str;
 		}
-		else if (is_op_(*str) && i > 0)
+		else if (is_op(*str) && i > 0)
 		{
 			--i;
 			if (do_op(num + i, *str) == -1)

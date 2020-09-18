@@ -16,10 +16,10 @@ SRC_DIR_PARSE = parse/
 SRC_DIR_LOGIC = logic/
 SRC_DIR_OUTPUT = output/
 
-SRC_MAIN = rpn.c
-SRC_PARSE_FILES =
-SRC_LOGIC_FILES =
-SRC_OUTPUT_FILES =
+SRC_MAIN = main.c
+SRC_PARSE_FILES = add_to_out.c  check_op.c  get_arg.c  is_op.c  stack_op.c  to_rpn.c
+SRC_LOGIC_FILES = operations.c  rpn.c
+SRC_OUTPUT_FILES = ft_exit.c
 
 SRC_PARSE = $(addprefix $(SRC_DIR_PARSE), $(SRC_PARSE_FILES))
 SRC_LOGIC = $(addprefix $(SRC_DIR_LOGIC), $(SRC_LOGIC_FILES))
@@ -40,7 +40,7 @@ lib:
 	make -sC $(LIBFT_DIR)
 
 $(NAME): $(LIBFT) $(OBJ_DIR) $(OBJ)
-	gcc $(CFLAGS) $(OBJ) $(INCLUDES) $(LIB_FLAG) -o $(NAME)
+	gcc $(CFLAGS) $(OBJ) $(INCLUDES) $(LIB_FLAG) -o $(NAME) -lm
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR) $(OBJ_DIRS)

@@ -49,6 +49,8 @@ char *to_rpn(char *str, char *end)
 	}
 	while (stack)
 	{
+		if ((*stack).op.priority == -1)
+			ft_exit(NO_CLOSE_BRACKET);
 		op_to_out((*stack).op.name, out, i);
 		i++;
 		remove_op(&stack);

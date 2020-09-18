@@ -44,10 +44,12 @@ int			op_to_out(char op_name, char *out, int i);
 void		add_delim_out(char *out, int *j);
 char		*get_arg(char *out, char * str, int *j, char del);
 
+int			rpn_calc(char *str);
 
 void		ft_exit(char *error);
 int			is_digit(char x);
-//int is_op(char x);
+t_operation *is_op(char x);
+
 
 
 
