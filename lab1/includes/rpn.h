@@ -9,7 +9,7 @@
 #include "libftprintf.h"
 #include "error_msg.h"
 
-# define USAGE "./rpn '(1 + 2) - 3' -rpn"
+# define USAGE " ./rpn '(1 + 2) - 3'"
 
 typedef struct	s_operation
 {
@@ -32,8 +32,6 @@ double		ft_mod(double a, double b);
 double		ft_div(double a, double b);
 double		ft_log(double base, double b);
 
-
-
 char		*to_rpn(char *str, char *end);
 t_stack_op	*create_stop(t_operation data);
 void		remove_op(t_stack_op **op);
@@ -50,8 +48,5 @@ double rpn_calc(char *str, char *end);
 void		ft_exit(char *error);
 int			is_digit(char x);
 t_operation *is_op(char x);
-
-
-
 
 #endif

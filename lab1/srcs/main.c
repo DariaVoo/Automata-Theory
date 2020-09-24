@@ -6,7 +6,6 @@
 int	main(int argc, char **argv)
 {
 	char *out;
-	char *end;
 	double ans;
 
 	if (argc != 2)
