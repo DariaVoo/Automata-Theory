@@ -1,7 +1,7 @@
 def write_file(file_name, data: str):
     """ Функция записи данных в файл """
     try:
-        f = open(file_name, 'wb')
+        f = open(file_name, 'w')
         f.write(data)
         f.close()
     except Exception as e:

@@ -40,4 +40,5 @@ def to_deterministic(graph: nx.DiGraph):
                         end = v
                 new_graph.add_edge(begin, end, weigth=key_w)
 
-    print(new_graph.adj)
+    # print(new_graph.adj)
+    return new_graph
