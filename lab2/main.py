@@ -11,7 +11,6 @@ if __name__ == "__main__":
     graph = parse_file(file_name)
     if graph is not None:
         # draw(graph)
-        # print(graph.adj)
         if not check_deterministic(graph):
             determ_graph = to_deterministic(graph)
             # draw(determ_graph)

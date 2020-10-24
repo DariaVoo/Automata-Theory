@@ -4,7 +4,6 @@ import networkx as nx
 def analysis_str(instr: str, graph: nx.DiGraph):
     """ Анализ строки akmc
     """
-    print(graph.adj)
     current_state = prev_state = 'q0'
     for char in instr:
         print(current_state, f'-{char}->', end=' ')

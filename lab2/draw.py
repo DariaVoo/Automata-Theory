@@ -3,8 +3,9 @@ import matplotlib.pyplot as plt
 
 
 def draw(graph: nx.DiGraph):
-    nx.draw_circular(graph,  # pos=nodes,
-                     with_labels=False,
+    plt.rcParams.update({'font.size': 25, 'font.weight': 'bold'})
+    nx.draw_circular(graph,
+                     with_labels=True,
                      # node_color=color_map,
-                     node_size=20)
+                     node_size=110)
     plt.show()
