@@ -16,9 +16,9 @@ def check_deterministic(graph: nx.DiGraph):
         for key_end in graph.adj[key_begin].keys():
             weigths.append(graph.adj[key_begin][key_end]['weight'])
         if len(weigths) != len(set(weigths)):
-            print("Это Недетерменированный автомат")
+            print("This is an Undetermined automaton!")
             return False
 
-    print("Это Детерменированный автомат")
+    print("This is an Determined automaton)")
     return True
 
