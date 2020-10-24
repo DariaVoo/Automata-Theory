@@ -9,6 +9,7 @@ def to_deterministic(graph: nx.DiGraph):
     new_graph = nx.DiGraph()
     join_vertex = []
 
+    print("Joint vertexes: ", end='')
     for key_begin in graph.adj.keys():
         begin = key_begin
 
