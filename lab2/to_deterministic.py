@@ -18,7 +18,7 @@ def to_deterministic(graph: nx.DiGraph):
 
         weigths = {}
         for key_end in graph.adj[key_begin].keys():
-            w = graph.adj[key_begin][key_end]['weight']
+            w = graph.adj[key_begin][key_end]['weigth']
             is_not_loop = begin.find(key_end) == -1
 
             if w not in weigths.keys() and is_not_loop:

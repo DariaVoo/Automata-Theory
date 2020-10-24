@@ -8,7 +8,6 @@ def analysis_str(str: str):
     return state_machine.does_match()
 
 
-
 class State:
     """ Состояние автомата
         @n_state - номер состояния
