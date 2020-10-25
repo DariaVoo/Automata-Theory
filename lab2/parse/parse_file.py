@@ -11,7 +11,7 @@ def create_graph(transitions: str):
         states = re.findall(r'[qf]\d+', word)
         condition = re.findall(r',.=', word)
         condition = condition[0][1:-1]
-        graph.add_edge(states[0], states[-1], weigth=condition)
+        graph.add_edge(states[0], states[-1], weight=condition)
 
     # print(graph.nodes)
     # print(graph.edges)

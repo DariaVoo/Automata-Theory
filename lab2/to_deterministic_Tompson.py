@@ -1,9 +1,9 @@
 import networkx as nx
 
 
-def to_deterministic(graph: nx.DiGraph):
-    """ TODO: ПЕРЕДЕЛАТЬ
-    Перевод из недетерминированного автомата в детерминированный
+def to_deterministic_Tompson(graph: nx.DiGraph):
+    """ Перевод из недетерминированного автомата в детерминированный
+        алгоритмом Томпсона (наверное)
 
         @:return nx.DiGraph - недетерминированный автомат
     """
@@ -11,7 +11,7 @@ def to_deterministic(graph: nx.DiGraph):
     join_vertex = []
 
     print("Joint vertexes: ", end='')
-    for key_begin in graph.adj.keys():
+    for key_begin in graph.adj.keys():  # идём по всем вершинам
         begin = key_begin
 
         for v in join_vertex:
@@ -21,12 +21,8 @@ def to_deterministic(graph: nx.DiGraph):
         weigths = {}
         for key_end in graph.adj[key_begin].keys():
             w = graph.adj[key_begin][key_end]['weight']
-            # is_not_loop = begin.find(key_end) == -1
-            # is_not_loop = True
-
             if w not in weigths.keys():
                 weigths[w] = []
-            # if is_not_loop:  # не петля
             weigths[w].append(key_end)
 
         # print(weigths)
