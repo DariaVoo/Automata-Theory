@@ -4,6 +4,7 @@ from logic_check_str.check_str import analysis_str
 from parse.graph_to_file import graph_to_file
 from parse.parse_file import parse_file
 from to_deterministic import to_deterministic
+from to_deterministic_it import to_deterministic_it
 
 if __name__ == "__main__":
     # file_name = str(input())
@@ -12,7 +13,7 @@ if __name__ == "__main__":
     if graph is not None:
         # draw(graph)
         if not check_deterministic(graph):
-            determ_graph = to_deterministic(graph)
+            determ_graph = to_deterministic_it(graph)
             # draw(determ_graph)
             if str(input("Do you want to write determined automate to file? (yes/no)")) == "yes":
                 file_name = str(input("Enter a file name "))

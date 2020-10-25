@@ -18,7 +18,6 @@ def check_deterministic(graph: nx.DiGraph):
         if len(weigths) != len(set(weigths)):
             print("This is an Undetermined automaton!")
             return False
-
     print("This is an Determined automaton)")
     return True
 
