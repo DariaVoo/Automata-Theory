@@ -3,7 +3,7 @@ class State():
     stack: list
 
 
-class Rule(left, rigth):
-    def __init__(self):
+class Rule:
+    def __init__(self, left, right):
         self.left = left
-        self.right = rigth
+        self.right = right
