@@ -28,7 +28,7 @@ def make_transitions(rules, alphabet):
         stack_from = inp = alpha
         stack_to = ""
 
-        t = Transition(state_from, inp, stack_from, state_to, stack_to)
+        t = Transition(state_from, inp, stack_from, state_to, [stack_to])
         print(t)
         transitions.append(t)
 
@@ -36,42 +36,7 @@ def make_transitions(rules, alphabet):
     print('Type3 - Final state')
     inp = stack_to = ''
     stack_from = MARKER_STACK
-    t = Transition(state_from, inp, stack_from, state_to, stack_to)
-    print(t)
-    transitions.append(t)
-    return transitions
-
-
-def make_transitions_main(main_rules, alphabet):
-    transitions: list[Transition] = []
-    state_from = state_to = 's0'
-
-    print('Commands:\nType1')
-    #     Строим команды типа 1, '' - empty symb
-    for rule in main_rules:
-        stack_from = rule.left
-        stack_to = rule.right
-        inp = ''
-
-        t = Transition(state_from, inp, stack_from, state_to, stack_to)
-        print(t)
-        transitions.append(t)
-
-    print("Type2")
-    # Строим команды типа 2 для всех терминальных символов
-    for alpha in alphabet:
-        stack_from = inp = alpha
-        stack_to = ""
-
-        t = Transition(state_from, inp, stack_from, state_to, stack_to)
-        print(t)
-        transitions.append(t)
-
-    # Добавляем переход в конечное состояние
-    print('Type3 - Final state')
-    inp = stack_to = ''
-    stack_from = MARKER_STACK
-    t = Transition(state_from, inp, stack_from, state_to, stack_to)
+    t = Transition(state_from, inp, stack_from, state_to, [stack_to])
     print(t)
     transitions.append(t)
     return transitions

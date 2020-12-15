@@ -1,5 +1,5 @@
 class To:
-    def __init__(self, state_to, to_stack):
+    def __init__(self, state_to, to_stack: list):
         self.state_to = state_to
         self.add_to_stack = list(to_stack)
         self.add_to_stack.reverse()
@@ -9,17 +9,26 @@ class To:
 
 
 class Transition:
-    def __init__(self, state: str, input: str, stack: str, state_to: str='', to_stack: str=''):
+    def __init__(self, state: str, input: str, stack: str, state_to: str = '', to_stack: list = None):
         self.state = state
         self.input = input
         self.stack = stack
 
         self.to = []
         self.add_to(state_to, to_stack)
-        self.magazine = []
 
     def add_to(self, state_to, to_stack):
-        self.to.append(To(state_to, to_stack))
+        if to_stack is None:
+            self.to.append(To(state_to, ''))
+            return
+        
+        for l in to_stack:
+            self.to.append(To(state_to, l))
+
+
+
+    def get_count_to(self):
+        return len(self.to)
 
     def get_transition(self,):
         print(f"Do transition: {str(self)}\n")

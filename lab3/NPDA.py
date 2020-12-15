@@ -1,3 +1,4 @@
+import copy
 import sys
 
 from Transition import Transition
@@ -24,13 +25,29 @@ class NPDA:
                     empty = Transition(state.state, '', self.stack[-1])
                     if tr == state:
                         find_state = True
-                        if tr.input:
-                            self.input_str = self.input_str[1:]
 
-                        state_to, add_to_stack = tr.get_transition()
-                        state.state = state_to
-                        state.stack = self.stack.pop()
-                        self.stack += add_to_stack
+                        if tr.get_count_to() > 1:
+                            for right in tr.to:
+                                if tr.input:
+                                    self.input_str = self.input_str[1:]
+
+                                state_to, add_to_stack = right.state_to, right.add_to_stack
+                                state.state = state_to
+                                state.stack = self.stack.pop()
+                                self.stack += add_to_stack
+
+                                print("to recursive")
+                                ndpa = copy.deepcopy(self)
+                                return ndpa.do_transitions()
+
+                        else:
+                            if tr.input:
+                                self.input_str = self.input_str[1:]
+
+                            state_to, add_to_stack = tr.get_transition()
+                            state.state = state_to
+                            state.stack = self.stack.pop()
+                            self.stack += add_to_stack
                         # del from stack and str
 
                         state.input = self.input_str[0]
@@ -56,7 +73,6 @@ class NPDA:
         print(self)
         if self.do_transitions():
             print("Dcё ок!!!")
-
 
     def __str__(self):
         st = ''
