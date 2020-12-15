@@ -11,17 +11,6 @@ def make_transitions(rules, alphabet):
     transitions = []
     state_from = state_to = 's0'
 
-    print('Commands:\nType1')
-    #     Строим команды типа 1, '' - empty symb
-    for rule in rules:
-        stack_from = rule.left
-        stack_to = rule.right
-        inp = ''
-
-        t = Transition(state_from, inp, stack_from, state_to, stack_to)
-        print(t)
-        transitions.append(t)
-
     print("Type2")
     # Строим команды типа 2 для всех терминальных символов
     for alpha in alphabet:
@@ -39,6 +28,19 @@ def make_transitions(rules, alphabet):
     t = Transition(state_from, inp, stack_from, state_to, [stack_to])
     print(t)
     transitions.append(t)
+
+    print('Commands:\nType1')
+    #     Строим команды типа 1, '' - empty symb
+    state_from = state_to = 's0'
+    for rule in rules:
+        stack_from = rule.left
+        stack_to = rule.right
+        inp = ''
+
+        t = Transition(state_from, inp, stack_from, state_to, stack_to)
+        print(t)
+        transitions.append(t)
+    print()
     return transitions
 
 
@@ -46,15 +48,6 @@ def for_lib_make_transitions(rules, alphabet, main_rules):
     dict_inp = {}
     states_dict = {}
     state_from = state_to = 's0'
-
-    print('Commands:\nType1')
-    #     Строим команды типа 1, '' - empty symb
-    inp = ''
-    for rule in main_rules:
-        stack_from = rule.left
-        stack_to = rule.right
-
-        dict_inp[stack_from] = (state_to, tuple(stack_to))
 
     # Добавляем переход в конечное состояние
     print('Type3 - Final state')
@@ -69,6 +62,15 @@ def for_lib_make_transitions(rules, alphabet, main_rules):
         stack_from = inp = alpha
         stack_to = ""
         states_dict[inp] = {stack_from: (state_to, tuple(stack_to))}
+
+    print('Commands:\nType1')
+    #     Строим команды типа 1, '' - empty symb
+    inp = ''
+    for rule in main_rules:
+        stack_from = rule.left
+        stack_to = rule.right
+
+        dict_inp[stack_from] = (state_to, tuple(stack_to))
 
     print(states_dict)
     return states_dict

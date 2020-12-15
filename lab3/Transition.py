@@ -2,10 +2,15 @@ class To:
     def __init__(self, state_to, to_stack: list):
         self.state_to = state_to
         self.add_to_stack = list(to_stack)
-        self.add_to_stack.reverse()
+
+        # if '(' not in self.add_to_stack:
+        #     self.add_to_stack.reverse()
 
     def __str__(self):
-        return f'{self.state_to}, {self.add_to_stack}'
+        str_to = ''
+        for t in self.add_to_stack:
+            str_to += str(t)
+        return f'{self.state_to}, {str_to}'
 
 
 class Transition:
@@ -17,6 +22,10 @@ class Transition:
         self.to = []
         self.add_to(state_to, to_stack)
 
+    def is_finish(self):
+        from parse.parse_file import MARKER_STACK
+        return self.stack[0] == MARKER_STACK and self.input == ''
+
     def add_to(self, state_to, to_stack):
         if to_stack is None:
             self.to.append(To(state_to, ''))
@@ -24,8 +33,6 @@ class Transition:
 
         for l in to_stack:
             self.to.append(To(state_to, l))
-
-
 
     def get_count_to(self):
         return len(self.to)
@@ -35,13 +42,13 @@ class Transition:
         return self.to[0].state_to, self.to[0].add_to_stack
 
     def __eq__(self, other):
-        return self.state == other.state and self.input == other.input and self.stack == other.stack
+        return self.state == other.state and (self.input == other.input or self.input == '') and self.stack == other.stack[-1]
 
     def __str__(self):
-        str_to = ''
+        str_to = self.to[0].state_to + ', '
         for t in self.to:
-            str_to += str(t)
-        return f'O({self.state}, {self.input}, {self.stack}) -> ({t})'
+            str_to += str(t.add_to_stack)
+        return f'O({self.state}, {self.input}, {self.stack}) -> ({str_to})'
 
 
 class Rule:
