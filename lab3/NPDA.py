@@ -42,17 +42,21 @@ class NPDA:
                         state.stack = self.stack.pop()
                         self.stack += add_to_stack
                         print(self)
+            # self.do_transitions()
 
-
-        if not find_state:
-            print(self)
-            print('такого состояния не сужествует')
-            sys.exit()
+            if not find_state:
+                print(self)
+                print('такого состояния не существует')
+                return False
+                # sys.exit()
+        return True
 
     def read_input(self, input):
         self.input_str = input
         print(self)
-        self.do_transitions()
+        if self.do_transitions():
+            print("Dcё ок!!!")
+
 
     def __str__(self):
         st = ''

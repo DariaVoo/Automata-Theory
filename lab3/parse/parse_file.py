@@ -42,7 +42,42 @@ def make_transitions(rules, alphabet):
     return transitions
 
 
-def main_make_transitions(rules, alphabet, main_rules):
+def make_transitions_main(main_rules, alphabet):
+    transitions: list[Transition] = []
+    state_from = state_to = 's0'
+
+    print('Commands:\nType1')
+    #     Строим команды типа 1, '' - empty symb
+    for rule in main_rules:
+        stack_from = rule.left
+        stack_to = rule.right
+        inp = ''
+
+        t = Transition(state_from, inp, stack_from, state_to, stack_to)
+        print(t)
+        transitions.append(t)
+
+    print("Type2")
+    # Строим команды типа 2 для всех терминальных символов
+    for alpha in alphabet:
+        stack_from = inp = alpha
+        stack_to = ""
+
+        t = Transition(state_from, inp, stack_from, state_to, stack_to)
+        print(t)
+        transitions.append(t)
+
+    # Добавляем переход в конечное состояние
+    print('Type3 - Final state')
+    inp = stack_to = ''
+    stack_from = MARKER_STACK
+    t = Transition(state_from, inp, stack_from, state_to, stack_to)
+    print(t)
+    transitions.append(t)
+    return transitions
+
+
+def for_lib_make_transitions(rules, alphabet, main_rules):
     dict_inp = {}
     states_dict = {}
     state_from = state_to = 's0'
@@ -92,7 +127,7 @@ def get_stack_symb_alphabet(rules):
 
 def parse_file(file_name):
     rules = []
-    main_rules = []
+    main_rules: list[Rule] = []
 
     str_rules = read_file(file_name).split(sep='\n')
     # rules.remove("")
@@ -117,6 +152,7 @@ def parse_file(file_name):
             r = r[end_index + 1:]
             end_index = r.find('|')
             # print(f'left: {left} right: {right}')
+
             rules.append(Rule(left, right))
             rights.append(right)
 
@@ -129,7 +165,7 @@ def parse_file(file_name):
         main_rules.append(Rule(left, rights))
 
     print("Get Rules:")
-    for r in rules:
+    for r in main_rules:
         print(r)
     return rules, main_rules
 
