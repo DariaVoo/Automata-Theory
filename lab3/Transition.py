@@ -21,7 +21,7 @@ class Transition:
         if to_stack is None:
             self.to.append(To(state_to, ''))
             return
-        
+
         for l in to_stack:
             self.to.append(To(state_to, l))
 
