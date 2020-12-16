@@ -104,12 +104,13 @@ def parse_file(file_name):
     #     print("Invalid transitions:", rules[valid.index(None)])
     #     return None
 
+    # Разбираем каждое правило на левую и правую часть
+    # и составляем лист из правил Rule
     for rule in str_rules:
         rights = []
         sep_index = rule.find('>')
         left = rule[:sep_index]
         right = rule[sep_index + 1:]
-        print(f'left: {left} right: {right}')
 
         end_index = right.find('|')
         r = rule[sep_index + 1:]
@@ -118,14 +119,12 @@ def parse_file(file_name):
 
             r = r[end_index + 1:]
             end_index = r.find('|')
-            # print(f'left: {left} right: {right}')
 
             rules.append(Rule(left, right))
             rights.append(right)
 
         if end_index == -1:
             right = r
-            # print(f'left: {left} right: {right}')
             rules.append(Rule(left, right))
             rights.append(right)
 

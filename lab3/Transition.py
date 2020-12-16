@@ -1,5 +1,10 @@
 class To:
     def __init__(self, state_to, to_stack: list):
+        """
+        Информация о состоянии, в которое мы переходим и что мы кладём на стек.
+        :param state_to: состояние, в которое мы переходим
+        :param to_stack: символы, которые мы закидываем на стек
+        """
         self.state_to = state_to
         self.add_to_stack = list(to_stack)
 
@@ -15,6 +20,14 @@ class To:
 
 class Transition:
     def __init__(self, state: str, input: str, stack: str, state_to: str = '', to_stack: list = None):
+        """
+        Правило перехода
+        :param state: текущее состояние (из которого переходим)
+        :param input: текущее состояние входной ленты (текущий символ считывается из ленты в алгоритме, по дефолту это конец ленты)
+        :param stack: текущее состояние стека
+        :param state_to: куда переходим
+        :param to_stack: что добавляем в магазин, при переходе
+        """
         self.state = state
         self.input = input
         self.stack = stack
@@ -26,9 +39,17 @@ class Transition:
         return not self.stack and not self.input
 
     def get_state(self):
+        """ Получение текущего состояния в строковом представлении """
         return f'State: {self.state} Str: [{self.input}] Stack: {self.stack}'
 
     def add_to(self, state_to, to_stack):
+        """
+        Добавляем переходы
+        (в случае неоднозначного перехода, есть несколько состояний в которые мы преходим)
+        :param state_to:
+        :param to_stack:
+        :return: None
+        """
         if to_stack is None:
             self.to.append(To(state_to, ''))
             return
@@ -40,6 +61,7 @@ class Transition:
         return len(self.to)
 
     def get_transition(self):
+        """ Получение параметров в случае однозначного перехода """
         return self.to[0].state_to, self.to[0].add_to_stack
 
     def __eq__(self, other):
@@ -54,11 +76,15 @@ class Transition:
 
 class Rule:
     def __init__(self, left, right):
+        """
+        Правило в строковом представлении
+        :param left: левая часть правила - откуда переходим
+        :param right: правая часть правила(куда переходим) - лист, поскольку автомат недетерменированнный
+        """
         self.left = left
         self.right = right
 
     def add_right(self, right):
-        buf = right
         self.right = [right]
         self.right.append(right)
 

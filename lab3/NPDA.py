@@ -33,6 +33,7 @@ class NPDA:
                     #   Если переход не однозначный, то запускаем рекурсивынй вызов в каждое состояние
                     if tr.get_count_to() > 1:
                         for right in tr.to:
+                            # Сдвигаем указатель на входной ленте
                             if tr.input:
                                 self.state.input = self.state.input[1:]
 
@@ -78,7 +79,4 @@ class NPDA:
             print(f'"{input}" is invalid str :c')
 
     def __str__(self):
-        # st = ''
-        # for state in self.current_states:
-        #     st += str(state)
         return f'State: {self.state.state} Str: [{self.state.input}] Stack: {self.state.stack}'
