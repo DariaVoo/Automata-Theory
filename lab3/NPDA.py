@@ -7,21 +7,20 @@ from Transition import Transition
 class NPDA:
     def __init__(self, transitions, init_stack, init_state='s0', input_str="", verbose=False):
         self.transitions: list[Transition] = transitions
-        # self.stack = list(init_stack)
-        # self.input_str = input_str
-        # self.state = init_state
+
         self.state = Transition(init_state, input_str, list(init_stack))
 
-        # self.current_states: list[Transition] = [Transition(init_state, '', self.stack[-1])]
+        self.configurations: list[(str, str)] = []
         self.verbose = verbose
 
     def do_transitions(self):
         find_state = True
+
         while not self.state.is_finish() and find_state:
             find_state = False
             for tr in self.transitions:
                 if self.state.is_finish():
-                    return True
+                    return self
 
                 if tr == self.state:
                     find_state = True
@@ -43,6 +42,8 @@ class NPDA:
 
                             # TODO: Сохранять состояния куда-то (возможно в лист состояний класса - kostil)
                             #  мб лучше возвращать его
+                            self.configurations.append((self.state.get_state(), str(tr)))
+
                             ndpa = copy.deepcopy(self)
                             return ndpa.do_transitions()
 
@@ -54,30 +55,35 @@ class NPDA:
                         self.state.state = state_to
                         self.state.stack.pop()
                         self.state.stack += add_to_stack
-                    # del from stack and str
-                    # self.state.input = self.state.input[0]
+
+                        self.configurations.append((self.state.get_state(), str(tr)))
+
                     print(self)
 
             if not find_state:
                 print(self)
                 print('такого состояния не существует')
                 # TODO: можно поменять его на None
-                return False
+                return None
                 # sys.exit()
 
         if not self.input_str:
-            return True
+            return self
         else:
-            return False
+            return None
+
+    
 
     def read_input(self, input):
         self.state.input = input
         print(self)
-        if self.do_transitions():
-            print("Dcё ок!!!")
+        ans = self.do_transitions()
+        if ans is not None:
+            print(ans.configurations)
+            print("Вcё ок!!!")
 
     def __str__(self):
         # st = ''
         # for state in self.current_states:
         #     st += str(state)
-        return f'Str: [{self.state.input}] Stack: {self.state.stack} Current transitions:'
+        return f'State: {self.state.state} Str: [{self.state.input}] Stack: {self.state.stack}'

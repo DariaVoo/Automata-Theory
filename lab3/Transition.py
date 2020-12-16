@@ -23,8 +23,10 @@ class Transition:
         self.add_to(state_to, to_stack)
 
     def is_finish(self):
-        from parse.parse_file import MARKER_STACK
         return not self.stack and not self.input
+
+    def get_state(self):
+        return f'State: {self.state} Str: [{self.input}] Stack: {self.stack}'
 
     def add_to(self, state_to, to_stack):
         if to_stack is None:
