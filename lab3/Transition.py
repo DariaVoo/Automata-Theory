@@ -39,8 +39,7 @@ class Transition:
     def get_count_to(self):
         return len(self.to)
 
-    def get_transition(self,):
-        print(f"Do transition: {str(self)}\n")
+    def get_transition(self):
         return self.to[0].state_to, self.to[0].add_to_stack
 
     def __eq__(self, other):

@@ -1,7 +1,13 @@
 import copy
-import sys
 
 from Transition import Transition
+
+
+def print_config(config):
+    print('Configurations')
+    for conf in config:
+        state, rule = conf
+        print('%-50s RULE: %s' % (state, rule))
 
 
 class NPDA:
@@ -24,26 +30,20 @@ class NPDA:
 
                 if tr == self.state:
                     find_state = True
-
                     #   Если переход не однозначный, то запускаем рекурсивынй вызов в каждое состояние
                     if tr.get_count_to() > 1:
                         for right in tr.to:
                             if tr.input:
                                 self.state.input = self.state.input[1:]
 
-                            print(tr)
-
                             state_to, add_to_stack = right.state_to, right.add_to_stack
                             self.state.state = state_to
                             self.state.stack.pop()
                             self.state.stack += add_to_stack
 
-                            print("to recursive")
-
-                            # TODO: Сохранять состояния куда-то (возможно в лист состояний класса - kostil)
-                            #  мб лучше возвращать его
                             self.configurations.append((self.state.get_state(), str(tr)))
 
+                            # заходим в рекурсию
                             ndpa = copy.deepcopy(self)
                             return ndpa.do_transitions()
 
@@ -58,29 +58,24 @@ class NPDA:
 
                         self.configurations.append((self.state.get_state(), str(tr)))
 
-                    print(self)
-
             if not find_state:
-                print(self)
-                print('такого состояния не существует')
-                # TODO: можно поменять его на None
                 return None
-                # sys.exit()
 
         if not self.input_str:
             return self
         else:
             return None
 
-    
-
     def read_input(self, input):
         self.state.input = input
-        print(self)
         ans = self.do_transitions()
+
         if ans is not None:
-            print(ans.configurations)
-            print("Вcё ок!!!")
+            print(f'Yes! "{input}" is valid! c:')
+            if self.verbose:
+                print_config(ans.configurations)
+        else:
+            print(f'"{input}" is invalid str :c')
 
     def __str__(self):
         # st = ''

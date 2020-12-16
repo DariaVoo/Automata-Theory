@@ -7,7 +7,7 @@ if __name__ == '__main__':
     alphabet, stack_symb = get_stack_symb_alphabet(rules)
 
     transitions = make_transitions(main_rules, alphabet)
-    automate = NPDA(transitions, (MARKER_STACK, 'E'))
+    automate = NPDA(transitions, (MARKER_STACK, 'E'), verbose=True)
     # automate.read_input('a+a*a')
     automate.read_input('a')
 
