@@ -24,7 +24,7 @@ class Transition:
 
     def is_finish(self):
         from parse.parse_file import MARKER_STACK
-        return self.stack[0] == MARKER_STACK and self.input == ''
+        return not self.stack and not self.input
 
     def add_to(self, state_to, to_stack):
         if to_stack is None:
