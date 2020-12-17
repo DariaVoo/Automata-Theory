@@ -10,26 +10,27 @@ EMPTY_STR_SYMB = '~'
 
 def make_transitions(rules):
     rules_dict = {r.left: r for r in rules}
-    new_rules = []
-    print()
-    for rule in rules:
-        print('Rule:', rule)
-        new_right = []
-        for right, nonterms in zip(rule.right, rule.nonterminals):
-            for non in nonterms:
-                bu = rules_dict[non].create_new_gen_rule(right, non)
-
-                new_right += bu
-
-                n = Rule(rule.left, bu)
-                print(f'Nonterm {non}: ', n)
-                new_rules.append(Rule(rule.left, bu))
-            # print()
-
-        rule.right += new_right
-        print('!!!!!')
+    # new_rules = []
+    # print()
+    # for rule in rules:
+    #     print('Rule:', rule)
+    #     new_right = []
+    #     for right, nonterms in zip(rule.right, rule.nonterminals):
+    #         for non in nonterms:
+    #             bu = rules_dict[non].create_new_gen_rule(right, non)
+    #
+    #             new_right += bu
+    #
+    #             n = Rule(rule.left, bu)
+    #             print(f'Nonterm {non}: ', n)
+    #             new_rules.append(Rule(rule.left, bu))
+    #         # print()
+    #
+    #     rule.right += new_right
+    #     print('!!!!!')
 
     print(rules_dict)
+    return rules_dict
 
 
 def get_terminals_and_non(rules):
