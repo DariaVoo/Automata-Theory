@@ -22,8 +22,13 @@ def get_first(rules):
                 #   recursion
                 continue
             elif first_char == '‘':
-                tokens |= re.find(r'<[^‘’]+?>', str(right))
+                end = right.find("’")
+                s = {right[1:end]}
+                tokens |= s
             elif first_char == EMPTY_STR_SYMB:
                 continue
 
         first_dict[rule.left] = tokens
+
+    print('\nFIRST:', first_dict)
+    return first_dict
