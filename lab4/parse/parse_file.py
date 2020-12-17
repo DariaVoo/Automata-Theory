@@ -48,31 +48,31 @@ def make_transitions(rules, alphabet):
 
 
 def get_terminals_and_non(rules):
-    terminals: set = set()
     nonterminals: set = set()
+    terminals: set = set()
 
     print()
     for rule in rules:
-        ter = re.findall(r'<[^‘’]+?>', str(rule))
-        nonter = []
+        nonrerms = re.findall(r'<[^‘’]+?>', str(rule))
+        terms = []
         for r in rule.right:
             ful = re.findall(r'‘.*?’', str(r))
             fi = [s[1:-1] for s in ful]
-            nonter += fi
+            terms += fi
 
-        terminals |= set(ter)
-        nonterminals |= set(nonter)
+        nonterminals |= set(nonrerms)
+        terminals |= set(terms)
 
-        rule.terminals = ter
-        rule.nonterminals = nonter
+        rule.terminals = terms
+        rule.nonterminals = nonrerms
 
         # print('Rule:', rule)
         # print('Terminals:', ter)
         # print('Nonterminals:', nonter)
         # print()
 
-    print('Terminals:', len(terminals), terminals)
     print('Nonterminals:', len(nonterminals), nonterminals)
+    print('Terminals:', len(terminals), terminals)
     return terminals, nonterminals
 
 
