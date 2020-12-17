@@ -5,46 +5,31 @@ from parse.file_op import read_file
 
 PARTS_RULE_SEPARATOR = '>'
 RULE_SEPARATOR = '|'
-NONTERMINAL = set('A B C D E F G H I J K L M N O P Q R S T U V W X Y Z'.split(sep=' '))
-MARKER_STACK = '#'  # h0
 EMPTY_STR_SYMB = '~'
 
 
-def make_transitions(rules, alphabet):
-    transitions = []
-    state_from = state_to = 's0'
-
-    print("Type2")
-    # Строим команды типа 2 для всех терминальных символов
-    for alpha in alphabet:
-        stack_from = inp = alpha
-        stack_to = ""
-
-        t = Transition(state_from, inp, stack_from, state_to, [stack_to])
-        print(t)
-        transitions.append(t)
-
-    # Добавляем переход в конечное состояние
-    print('Type3 - Final state')
-    inp = stack_to = ''
-    stack_from = MARKER_STACK
-    t = Transition(state_from, inp, stack_from, state_to, [stack_to])
-    print(t)
-    transitions.append(t)
-
-    print('Commands:\nType1')
-    #     Строим команды типа 1, '' - empty symb
-    state_from = state_to = 's0'
-    for rule in rules:
-        stack_from = rule.left
-        stack_to = rule.right
-        inp = ''
-
-        t = Transition(state_from, inp, stack_from, state_to, stack_to)
-        print(t)
-        transitions.append(t)
+def make_transitions(rules):
+    rules_dict = {r.left: r for r in rules}
+    new_rules = []
     print()
-    return transitions
+    for rule in rules:
+        print('Rule:', rule)
+        new_right = []
+        for right, nonterms in zip(rule.right, rule.nonterminals):
+            for non in nonterms:
+                bu = rules_dict[non].create_new_gen_rule(right, non)
+
+                new_right += bu
+
+                n = Rule(rule.left, bu)
+                print(f'Nonterm {non}: ', n)
+                new_rules.append(Rule(rule.left, bu))
+            # print()
+
+        rule.right += new_right
+        print('!!!!!')
+
+    print(rules_dict)
 
 
 def get_terminals_and_non(rules):
@@ -53,22 +38,27 @@ def get_terminals_and_non(rules):
 
     print()
     for rule in rules:
-        nonrerms = re.findall(r'<[^‘’]+?>', str(rule))
+        nonterms = re.findall(r'<[^‘’]+?>', str(rule))
         terms = []
         for r in rule.right:
             ful = re.findall(r'‘.*?’', str(r))
             fi = [s[1:-1] for s in ful]
             terms += fi
 
-        nonterminals |= set(nonrerms)
+            rule.terminals.append(fi)
+
+            nonterm = re.findall(r'<[^‘’]+?>', str(r))
+            rule.nonterminals.append(nonterm)
+
+        nonterminals |= set(nonterms)
         terminals |= set(terms)
 
-        rule.terminals = terms
-        rule.nonterminals = nonrerms
+        # rule.terminals = terms
+        # rule.nonterminals = nonterms
 
         # print('Rule:', rule)
-        # print('Terminals:', ter)
-        # print('Nonterminals:', nonter)
+        # print('Terminals:', terms)
+        # print('Nonterminals:', nonterms)
         # print()
 
     print('Nonterminals:', len(nonterminals), nonterminals)

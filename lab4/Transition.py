@@ -1,3 +1,6 @@
+import re
+
+
 class To:
     def __init__(self, state_to, to_stack: list):
         """
@@ -83,14 +86,21 @@ class Rule:
         :param terminals: множество терминалов правила
         :param nonterminals: множество нетерминалов
         """
-        self.left = left
+        self.left: str = left
         self.right = right
-        self.terminals = None
-        self.nonterminals = None
+        self.terminals = []
+        self.nonterminals = []
 
     def add_right(self, right):
         self.right = [right]
         self.right.append(right)
+
+    def create_new_gen_rule(self, template, nonterm):
+        new_right = []
+        for r in self.right:
+            new_r = template.replace(nonterm, r)
+            new_right.append(new_r)
+        return new_right
 
     def __str__(self):
         return f"{self.left} -> {self.right}"
