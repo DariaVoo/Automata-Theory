@@ -83,6 +83,8 @@ class Rule:
         """
         self.left = left
         self.right = right
+        self.terminals = None
+        self.nonterminals = None
 
     def add_right(self, right):
         self.right = [right]

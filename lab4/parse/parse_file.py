@@ -7,6 +7,7 @@ PARTS_RULE_SEPARATOR = '>'
 RULE_SEPARATOR = '|'
 NONTERMINAL = set('A B C D E F G H I J K L M N O P Q R S T U V W X Y Z'.split(sep=' '))
 MARKER_STACK = '#'  # h0
+EMPTY_STR_SYMB = '~'
 
 
 def make_transitions(rules, alphabet):
@@ -46,46 +47,33 @@ def make_transitions(rules, alphabet):
     return transitions
 
 
-def get_stack_symb_alphabet(rules):
-    alphabet: set  # P
-    stack_symbols: set = set(MARKER_STACK)  # Z
-
-    for rule in rules:
-        stack_symbols |= set(rule.left)
-        stack_symbols |= set(rule.right)
-
-    print("stack symbols: ", stack_symbols)
-    alphabet = stack_symbols - NONTERMINAL
-    print("alphabet: ", alphabet)
-    stack_symbols |= set([MARKER_STACK, 'E'])
-
-    return alphabet, stack_symbols
-
-
 def get_terminals_and_non(rules):
     terminals: set = set()
     nonterminals: set = set()
 
     print()
     for rule in rules:
-        ter = re.findall(r'<.*?>', str(rule))
-        # for r in rule.right:
-        #     nonter = r.split(sep=' ')
+        ter = re.findall(r'<[^‘’]+?>', str(rule))
+        nonter = []
+        for r in rule.right:
+            ful = re.findall(r'‘.*?’', str(r))
+            fi = [s[1:-1] for s in ful]
+            nonter += fi
 
-        nonter = re.findall(r' ’[^<>]*?’ ', str(rule))
+        terminals |= set(ter)
+        nonterminals |= set(nonter)
 
-        print('Terminals:', ter)
-        print('Nonterminals:', nonter)
+        rule.terminals = ter
+        rule.nonterminals = nonter
 
-    #     stack_symbols |= set(rule.left)
-    #     stack_symbols |= set(rule.right)
-    #
-    # print("stack symbols: ", stack_symbols)
-    # alphabet = stack_symbols - NONTERMINAL
-    # print("alphabet: ", alphabet)
-    # stack_symbols |= set([MARKER_STACK, 'E'])
-    #
-    # return alphabet, stack_symbols
+        # print('Rule:', rule)
+        # print('Terminals:', ter)
+        # print('Nonterminals:', nonter)
+        # print()
+
+    print('Terminals:', len(terminals), terminals)
+    print('Nonterminals:', len(nonterminals), nonterminals)
+    return terminals, nonterminals
 
 
 def parse_file(file_name):
@@ -104,17 +92,17 @@ def parse_file(file_name):
     # и составляем лист из правил Rule
     for rule in str_rules:
         rights = []
-        sep_index = rule.find(':')
+        sep_index = rule.find(': ')
         left = rule[:sep_index]
-        right = rule[sep_index + 1:]
+        right = rule[sep_index + 2:]
 
-        end_index = right.find('|')
-        r = rule[sep_index + 1:]
+        end_index = right.find(' | ')
+        r = rule[sep_index + 2:]
         while end_index != -1:
             right = r[:end_index]
 
-            r = r[end_index + 1:]
-            end_index = r.find('|')
+            r = r[end_index + 3:]
+            end_index = r.find(' | ')
 
             rules.append(Rule(left, right))
             rights.append(right)
