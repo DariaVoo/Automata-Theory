@@ -10,6 +10,7 @@ EMPTY_STR_SYMB = '~'
 
 def make_transitions(rules):
     rules_dict = {r.left: r for r in rules}
+    # TODO: Дописать полную генерацию правил
     # new_rules = []
     # print()
     # for rule in rules:
