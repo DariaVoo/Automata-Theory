@@ -14,7 +14,7 @@ def find_set_first(rule, rules_dict) -> list:
             end = right.find(">")
             non = right[:end+1]
 
-            rules_dict[non].need_to_check = False
+            # rules_dict[non].need_to_check = False
             res += find_set_first(rules_dict[non], rules_dict)
 
         elif first_char == '‘':  # terminal
@@ -44,11 +44,18 @@ def get_first(rules, rules_dict: dict):
     # for rule in rules:
     print()
     for key in rules_dict.keys():
-        if rules_dict[key].need_to_check:
-            ans = find_set_first(rules_dict[key], rules_dict)
-            print('ANS: ', ans)
-    # TODO: дождаться ответа от Кремера и в соответствии с ним
-    #       пообъединять(нет) множества и составить словарь
+        ans = find_set_first(rules_dict[key], rules_dict)
+        print(f'ANS{key}: ', ans)
+
+        first = set()
+        for nonterm, terms in ans:
+            first |= terms
+            if nonterm in first_dict.keys():
+                first_dict[nonterm] |= terms
+            else:
+                first_dict[nonterm] = terms
+
+        first_dict[key] |= first
 
     print('\nFIRST:', first_dict)
     return first_dict
@@ -64,11 +71,11 @@ def find_set_second(rule, rules_dict) -> list:
         if last_char == '>':   # nonterminal
             begin = right.rfind("<")
             non = right[begin:]
-            tokens |= {non}
-
+            # tokens |= {non}
+            ans.append(non)
             # rules_dict[non].need_to_check = False
 
-    ans.append((rule.left, tokens))
+    # ans.append((rule.left, tokens))
     return ans
 
 
@@ -88,7 +95,7 @@ def get_follow(rules, rules_dict: dict):
     for key in rules_dict.keys():
         if rules_dict[key].need_to_check:
             ans = find_set_second(rules_dict[key], rules_dict)
-            print('ANS: ', ans)
+            print(f'ANS{key}: ', ans)
     # TODO: дождаться ответа от Кремера и в соответствии с ним
     #       пообъединять(нет) множества и составить словарь
 

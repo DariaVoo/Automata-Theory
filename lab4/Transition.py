@@ -1,3 +1,4 @@
+import copy
 import re
 
 
@@ -96,12 +97,16 @@ class Rule:
         self.right = [right]
         self.right.append(right)
 
-    def create_new_gen_rule(self, template, nonterm):
+    def create_new_gen_rule(self, template, nonterm, nonterms):
         new_right = []
+
         for r in self.right:
             new_r = template.replace(nonterm, r)
             new_right.append(new_r)
-        return new_right
+
+        new_nonterms = copy.deepcopy(nonterms)
+        new_nonterms.remove(nonterm)
+        return new_right, new_nonterms
 
     def __str__(self):
         return f"{self.left} -> {self.right}"
