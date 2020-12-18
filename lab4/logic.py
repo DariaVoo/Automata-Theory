@@ -62,7 +62,7 @@ def get_first(rules, rules_dict: dict):
 
 
 # FOLLOW
-def find_set_second(rule, rules_dict) -> list:
+def find_set_second_nonterm(rule, rules_dict) -> list:
     ans = []
     tokens = set()
 
@@ -71,9 +71,28 @@ def find_set_second(rule, rules_dict) -> list:
         if last_char == '>':   # nonterminal
             begin = right.rfind("<")
             non = right[begin:]
-            # tokens |= {non}
             ans.append(non)
-            # rules_dict[non].need_to_check = False
+
+        # elif last_char == '’':   # terminal
+        #     begin = right.rfind("‘")
+        #     non = right[begin + 1:-1]
+
+    # ans.append((rule.left, tokens))
+    return ans
+
+
+def find_set_second_terms(rule):
+    ans = []
+    terms = []
+
+    for right in rule.right:
+        last_char = right[-1]
+        if last_char == '’':   # terminals
+            begin = right.rfind("‘")
+            t = right[begin + 1:-1]
+            terms.append(t)
+
+
 
     # ans.append((rule.left, tokens))
     return ans
@@ -93,11 +112,10 @@ def get_follow(rules, rules_dict: dict):
     # for rule in rules:
     print()
     for key in rules_dict.keys():
-        if rules_dict[key].need_to_check:
-            ans = find_set_second(rules_dict[key], rules_dict)
-            print(f'ANS{key}: ', ans)
-    # TODO: дождаться ответа от Кремера и в соответствии с ним
-    #       пообъединять(нет) множества и составить словарь
+        ans = find_set_second_nonterm(rules_dict[key], rules_dict)
+        print(f'ANS{key}: ', ans)
+
 
     print('\nFOLLOW:', follow_dict)
+
     return follow_dict

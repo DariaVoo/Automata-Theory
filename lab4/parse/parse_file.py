@@ -10,44 +10,35 @@ EMPTY_STR_SYMB = '~'
 
 def find_all_subrules(right, nonterms, left, rules_dict):
     new_right = []
-    # new_rules = []
     for non in nonterms:
         bu, new_nons = rules_dict[non].create_new_gen_rule(right, non, nonterms)
-
         new_right += bu
-        n = Rule(left, bu)
+
+        # n = Rule(left, bu)
         # print(f'Nonterm {non}: ', n)
-        # new_rules.append(n)
         for ri in bu:
             new_right += find_all_subrules(ri, new_nons, left, rules_dict)
     return new_right
 
 
 def make_transitions(rules):
-    rules_dict = {r.left: r for r in rules}
     # TODO: Дописать полную генерацию правил
-    # new_rules = []
-    # print()
-    # for rule in rules:
-    #     print('Rule:', rule)
-    #     new_right = []
-    #     for r, nonterms in zip(rule.right, rule.nonterminals):
-    #         new_right += find_all_subrules(r, nonterms, rule.left, rules_dict)
-    #         # for non in nonterms:
-    #         #     bu, new_nons = rules_dict[non].create_new_gen_rule(r, non, nonterms)
-    #         #
-    #         #     new_right += bu
-    #         #
-    #         #     n = Rule(rule.left, bu)
-    #         #     print(f'Nonterm {non}: ', n)
-    #         #     new_rules.append(n)
-    #         # # print()
-    #     rule.right += new_right
-    #     print(new_right)
-    #     print('!!!!!')
+    rules_dict = {r.left: r for r in rules}
+    new_rules = []
+    print()
+    for rule in rules:
+        print('Rule:', rule)
+        new_right = []
+        for r, nonterms in zip(rule.right, rule.nonterminals):
+            new_right += find_all_subrules(r, nonterms, rule.left, rules_dict)
+            rule.right += new_right
+            print(new_right)
 
+        print('!!!!!')
+
+    rules_dict_full = {r.left: r for r in rules}
     # print(rules_dict)
-    return rules_dict
+    return rules_dict, rules_dict_full
 
 
 def get_terminals_and_non(rules):
