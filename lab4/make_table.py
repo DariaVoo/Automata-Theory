@@ -3,7 +3,7 @@ import pandas as pd
 from parse.parse_file import EMPTY_STR_SYMB
 
 
-def make_table(first, follow, rules, terminals):
+def make_table(follow, rules, terminals):
     table = pd.DataFrame(columns=list(terminals))
     for rule in rules:
         for first, right in zip(rule.first_in_right, rule.right):
