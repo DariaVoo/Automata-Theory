@@ -1,3 +1,4 @@
+import copy
 import re
 
 from Transition import Rule, Transition
@@ -24,17 +25,18 @@ def find_all_subrules(right, nonterms, left, rules_dict):
 def make_transitions(rules):
     # TODO: Дописать полную генерацию правил
     rules_dict = {r.left: r for r in rules}
+    rules_ = copy.deepcopy(rules)
     new_rules = []
     print()
-    for rule in rules:
-        print('Rule:', rule)
+    for rule in rules_:
+        # print('Rule:', rule)
         new_right = []
         for r, nonterms in zip(rule.right, rule.nonterminals):
             new_right += find_all_subrules(r, nonterms, rule.left, rules_dict)
             rule.right += new_right
-            print(new_right)
+            # print(new_right)
 
-        print('!!!!!')
+        # print('!!!!!')
 
     rules_dict_full = {r.left: r for r in rules}
     # print(rules_dict)

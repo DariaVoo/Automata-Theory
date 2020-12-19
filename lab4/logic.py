@@ -30,7 +30,7 @@ def find_set_first(rule, rules_dict) -> list:
     return ans
 
 
-def get_first(rules, rules_dict: dict):
+def get_first(rules_dict):
     """
     FIRST(E) = set{} -
     возвращает словарь всех FIRST вида
@@ -62,8 +62,8 @@ def get_first(rules, rules_dict: dict):
 
 
 # FOLLOW
-def find_set_second_nonterm(rule, rules_dict) -> list:
-    ans = []
+def find_set_second_nonterm(rule) -> list:
+    ans = {rule.left}
     tokens = set()
 
     for right in rule.right:
@@ -71,7 +71,7 @@ def find_set_second_nonterm(rule, rules_dict) -> list:
         if last_char == '>':   # nonterminal
             begin = right.rfind("<")
             non = right[begin:]
-            ans.append(non)
+            ans |= {non}
 
         # elif last_char == '’':   # terminal
         #     begin = right.rfind("‘")
@@ -81,24 +81,32 @@ def find_set_second_nonterm(rule, rules_dict) -> list:
     return ans
 
 
-def find_set_second_terms(rule):
-    ans = []
-    terms = []
+def find_set_second_terms(rule, nonterms, firsts):
+    terms = set()
 
     for right in rule.right:
         last_char = right[-1]
         if last_char == '’':   # terminals
             begin = right.rfind("‘")
             t = right[begin + 1:-1]
-            terms.append(t)
+            terms |= {t}
+
+        else:
+            for nonterm in nonterms:    # Смотрим, содержит ли наша строка нетерминал
+                begin = right.rfind(nonterm)
+                if begin != -1:
+                    if begin + len(nonterm) >= len(right):
+                        terms |= firsts[nonterm]
+                        print(f'Add feom FIRST: {firsts[nonterm]}')
+                    elif right[begin + len(nonterm)] == '‘':
+                        end = right.rfind('’')
+                        t = right[begin + len(nonterm):end + 1]
+                        terms |= {t}
+
+    return terms
 
 
-
-    # ans.append((rule.left, tokens))
-    return ans
-
-
-def get_follow(rules, rules_dict: dict):
+def get_follow(firsts, rules_dict: dict):
     """
     FOLLOW(E) = set{} -
     возвращает словарь всех FOLLOW вида
@@ -112,9 +120,12 @@ def get_follow(rules, rules_dict: dict):
     # for rule in rules:
     print()
     for key in rules_dict.keys():
-        ans = find_set_second_nonterm(rules_dict[key], rules_dict)
-        print(f'ANS{key}: ', ans)
+        nonterms = find_set_second_nonterm(rules_dict[key])
+        print(f'ANS{key}: ', nonterms)
 
+        terms = find_set_second_terms(rules_dict[key], nonterms, firsts)
+
+        follow_dict[key] = terms
 
     print('\nFOLLOW:', follow_dict)
 
