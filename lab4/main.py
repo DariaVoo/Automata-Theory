@@ -1,4 +1,5 @@
-from logic import get_first, get_follow
+from first import get_first
+from follow import get_follow
 from parse.parse_file import parse_file, get_terminals_and_non, make_transitions
 
 if __name__ == '__main__':
