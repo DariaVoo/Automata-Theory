@@ -23,6 +23,9 @@ def find_set_first(rule, rules_dict) -> list:
             s = {EMPTY_STR_SYMB}
             tokens |= s
 
+        # добавляем в правило множество first для конкретно этого правила
+        rule.first_in_right.append(tokens)
+
     ans += res
     ans.append((rule.left, tokens))
     return ans

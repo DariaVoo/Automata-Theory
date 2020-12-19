@@ -91,7 +91,7 @@ class Rule:
         self.right = right
         self.terminals = []
         self.nonterminals = []
-        self.need_to_check = True
+        self.first_in_right = []
 
     def add_right(self, right):
         self.right = [right]
