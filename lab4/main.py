@@ -9,3 +9,5 @@ if __name__ == '__main__':
     dict_rule, dict_rule_full = make_transitions(main_rules)
     first = get_first(dict_rule)
     get_follow(first, dict_rule_full)
+
+
