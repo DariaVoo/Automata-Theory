@@ -120,8 +120,8 @@ def parse_file(file_name):
 
 
 def get_input(file_name):
-    input_str:str = read_file(file_name)
-    new_str = input_str.replace('\n', EMPTY_STR_SYMB)
-    new_str += EMPTY_STR_SYMB
+    input_str: str = read_file(file_name)
+    new_str = input_str.replace('\n', '')
+    new_str += ' ' + EMPTY_STR_SYMB
     print(f'Input: {new_str}')
     return new_str
