@@ -88,10 +88,10 @@ class Rule:
         :param nonterminals: множество нетерминалов
         """
         self.left: str = left
-        self.right = right
-        self.terminals = []
-        self.nonterminals = []
-        self.first_in_right = []
+        self.right: list = right
+        self.terminals: list = []
+        self.nonterminals: list = []
+        self.first_in_right: list = []
 
     def add_right(self, right):
         self.right = [right]
