@@ -19,18 +19,17 @@ def make_table(follow, rules, terminals):
     table = pd.DataFrame(columns=list(terminals))
     for rule in rules:
         for first, right in zip(rule.first_in_right, rule.right):
+            a = create_list_for_stack(right)
             for term in first:
-                # a = right.split()
-                # a.reverse()
-                a = create_list_for_stack(right)
                 table.loc[rule.left, term] = a
 
             if EMPTY_STR_SYMB in first:
                 for ter in follow[rule.left]:
-                    # a = right.split()
-                    # a.reverse()
                     a = create_list_for_stack(right)
                     table.loc[rule.left, ter] = a
 
     # table.to_csv('table.csv')
+    import numpy as np
+    table = table.replace(np.nan, None, regex=True)
+    # table.fillna([], inplace=True)
     return table

@@ -3,10 +3,10 @@ from parse.parse_file import EMPTY_STR_SYMB
 
 def find_set_first(rule, rules_dict) -> list:
     ans = []
-    tokens = set()
     res = []
 
     for right in rule.right:
+        tokens = set()
         first_char = right[0]
         if first_char == '<':   # nonterminal
             end = right.find(">")
