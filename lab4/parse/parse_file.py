@@ -23,10 +23,8 @@ def find_all_subrules(right, nonterms, left, rules_dict):
 
 
 def make_transitions(rules):
-    # TODO: Дописать полную генерацию правил
     rules_dict = {r.left: r for r in rules}
     rules_ = copy.deepcopy(rules)
-    new_rules = []
     print()
     for rule in rules_:
         # print('Rule:', rule)
@@ -121,3 +119,9 @@ def parse_file(file_name):
     return rules, main_rules
 
 
+def get_input(file_name):
+    input_str:str = read_file(file_name)
+    new_str = input_str.replace('\n', EMPTY_STR_SYMB)
+    new_str += EMPTY_STR_SYMB
+    print(f'Input: {new_str}')
+    return new_str
