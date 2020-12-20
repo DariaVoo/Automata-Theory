@@ -23,7 +23,7 @@ def predictive_analysis(table, input_str, terminals):
             stack.pop()
         else:
             production = table.loc[stack[-1], input_str[index]]
-            if production is not None:
+            if type(production) != float:
                 a = stack.pop()
                 stack += production
                 print(f'Use production {a} -> {production}')

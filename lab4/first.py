@@ -4,6 +4,7 @@ from parse.parse_file import EMPTY_STR_SYMB
 def find_set_first(rule, rules_dict) -> list:
     ans = []
     res = []
+    all_tokens = set()
 
     for right in rule.right:
         tokens = set()
@@ -13,7 +14,11 @@ def find_set_first(rule, rules_dict) -> list:
             non = right[:end+1]
 
             # rules_dict[non].need_to_check = False
-            res += find_set_first(rules_dict[non], rules_dict)
+            r1 = find_set_first(rules_dict[non], rules_dict)
+            if r1:
+                for n, terms in r1:
+                    tokens |= terms
+            res += r1
 
         elif first_char == '‘':  # terminal
             end = right.find("’")
@@ -23,11 +28,12 @@ def find_set_first(rule, rules_dict) -> list:
             s = {EMPTY_STR_SYMB}
             tokens |= s
 
+        all_tokens |= tokens
         # добавляем в правило множество first для конкретно этого правила
         rule.first_in_right.append(tokens)
 
     ans += res
-    ans.append((rule.left, tokens))
+    ans.append((rule.left, all_tokens))
     return ans
 
 

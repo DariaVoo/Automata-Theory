@@ -29,7 +29,6 @@ def make_table(follow, rules, terminals):
                     table.loc[rule.left, ter] = a
 
     # table.to_csv('table.csv')
-    import numpy as np
-    table = table.replace(np.nan, None, regex=True)
-    # table.fillna([], inplace=True)
+    # import numpy as np
+    # table = table.replace(np.nan, None, regex=True)
     return table
