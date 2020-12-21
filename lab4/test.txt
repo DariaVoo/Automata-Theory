@@ -1,5 +1,5 @@
 int main ( ) {
- for ( int im = 88 ; im < x ; )  {
+ for ( int im = 88 ; im < x ; pp )  {
  int x = 3 ;
  }
  }

@@ -12,7 +12,7 @@ if __name__ == '__main__':
     first = get_first(dict_rule)
     follow = get_follow(first, dict_rule_full)
     table = make_table(follow, main_rules, terminals)
-    # print()
+    print()
     input_str = get_input('test.txt')
     predictive_analysis(table, input_str, terminals, 'log.txt')
 

@@ -27,7 +27,7 @@ def find_set_second_terms(rule, nonterms, firsts):
                 if begin != -1:
                     if begin + len(nonterm) >= len(right):
                         terms |= firsts[nonterm]
-                        print(f'Add feom FIRST: {firsts[nonterm]}')
+                        # print(f'Add from FIRST: {firsts[nonterm]}')
                     elif right[begin + len(nonterm)] == '‘':
                         end = right.rfind('’')
                         t = right[begin + len(nonterm):end + 1]
@@ -47,11 +47,10 @@ def get_follow(firsts, rules_dict: dict):
     :return:
     """
     follow_dict = {}
-    # for rule in rules:
-    print()
+    # print()
     for key in rules_dict.keys():
         nonterms = find_set_second_nonterm(rules_dict[key])
-        print(f'ANS{key}: ', nonterms)
+        # print(f'ANS{key}: ', nonterms)
 
         terms = find_set_second_terms(rules_dict[key], nonterms, firsts)
 

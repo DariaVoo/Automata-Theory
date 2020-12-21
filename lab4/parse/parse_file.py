@@ -14,9 +14,6 @@ def find_all_subrules(right, nonterms, left, rules_dict):
     for non in nonterms:
         bu, new_nons = rules_dict[non].create_new_gen_rule(right, non, nonterms)
         new_right += bu
-
-        # n = Rule(left, bu)
-        # print(f'Nonterm {non}: ', n)
         for ri in bu:
             new_right += find_all_subrules(ri, new_nons, left, rules_dict)
     return new_right

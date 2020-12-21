@@ -1,240 +1,245 @@
 
 Stack: ['~', '<program>']
-input: ['int', 'main', '(', ')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['int', 'main', '(', ')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <program> -> ['}', '<statement>', '{', ')', '(', 'main', '<type>']
 
 Stack: ['~', '}', '<statement>', '{', ')', '(', 'main', '<type>']
-input: ['int', 'main', '(', ')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['int', 'main', '(', ')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <type> -> ['int']
 
 Stack: ['~', '}', '<statement>', '{', ')', '(', 'main', 'int']
-input: ['int', 'main', '(', ')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['int', 'main', '(', ')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack int
 
 Stack: ['~', '}', '<statement>', '{', ')', '(', 'main']
-input: ['main', '(', ')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['main', '(', ')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack main
 
 Stack: ['~', '}', '<statement>', '{', ')', '(']
-input: ['(', ')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['(', ')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack (
 
 Stack: ['~', '}', '<statement>', '{', ')']
-input: [')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: [')', '{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack )
 
 Stack: ['~', '}', '<statement>', '{']
-input: ['{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['{', 'for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack {
 
 Stack: ['~', '}', '<statement>']
-input: ['for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <statement> -> ['<statement>', '<for>']
 
 Stack: ['~', '}', '<statement>', '<for>']
-input: ['for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <for> -> [')', ';', '<bool_expression>', ';', '<declaration>', '(', 'for']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<declaration>', '(', 'for']
-input: ['for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['for', '(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack for
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<declaration>', '(']
-input: ['(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['(', 'int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack (
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<declaration>']
-input: ['int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <declaration> -> ['<assign>', '<identifier>', '<type>']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<identifier>', '<type>']
-input: ['int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <type> -> ['int']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<identifier>', 'int']
-input: ['int', 'im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['int', 'im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack int
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<identifier>']
-input: ['im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<identifier>']
-input: ['im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <identifier> -> ['<character><id_end>']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<character><id_end>']
-input: ['im', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['im', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 get concat production <character><id_end>
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<id_end>', '<character>']
-input: ['i', 'm', '~', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['i', 'm', '~', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <character> -> ['i']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<id_end>', 'i']
-input: ['i', 'm', '~', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['i', 'm', '~', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack i
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<id_end>']
-input: ['m', '~', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['m', '~', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <id_end> -> ['<character><id_end>']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<character><id_end>']
-input: ['m', '~', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['m', '~', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 get concat production <character><id_end>
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<id_end>', '<character>']
-input: ['m', '~', '~', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['m', '~', '~', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <character> -> ['m']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<id_end>', 'm']
-input: ['m', '~', '~', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['m', '~', '~', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack m
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '<id_end>']
-input: ['~', '~', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['~', '~', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <id_end> -> ['~']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>', '~']
-input: ['~', '~', '=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['~', '~', '=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 I found empty symbol ~
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign>']
-input: ['=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <assign> -> ['<assign_end>', '=']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign_end>', '=']
-input: ['=', '88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['=', '88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack =
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign_end>']
-input: ['88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<assign_end>']
-input: ['88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <assign_end> -> ['<number>']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<number>']
-input: ['88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <number> -> ['<digit><number_end>']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<digit><number_end>']
-input: ['88', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['88', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 get concat production <digit><number_end>
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<number_end>', '<digit>']
-input: ['8', '8', '~', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['8', '8', '~', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <digit> -> ['8']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<number_end>', '8']
-input: ['8', '8', '~', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['8', '8', '~', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack 8
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<number_end>']
-input: ['8', '~', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['8', '~', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <number_end> -> ['<digit><number_end>']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<digit><number_end>']
-input: ['8', '~', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['8', '~', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 get concat production <digit><number_end>
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<number_end>', '<digit>']
-input: ['8', '~', '~', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['8', '~', '~', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <digit> -> ['8']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<number_end>', '8']
-input: ['8', '~', '~', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['8', '~', '~', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack 8
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '<number_end>']
-input: ['~', '~', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['~', '~', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <number_end> -> ['~']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';', '~']
-input: ['~', '~', ';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['~', '~', ';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 I found empty symbol ~
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>', ';']
-input: [';', 'im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: [';', 'im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack ;
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>']
-input: ['im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<bool_expression>']
-input: ['im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <bool_expression> -> ['<identifier>', '<relop>', '<identifier>']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<relop>', '<identifier>']
-input: ['im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <identifier> -> ['<character><id_end>']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<relop>', '<character><id_end>']
-input: ['im', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['im', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 get concat production <character><id_end>
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<relop>', '<id_end>', '<character>']
-input: ['i', 'm', '~', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['i', 'm', '~', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <character> -> ['i']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<relop>', '<id_end>', 'i']
-input: ['i', 'm', '~', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['i', 'm', '~', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack i
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<relop>', '<id_end>']
-input: ['m', '~', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['m', '~', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <id_end> -> ['<character><id_end>']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<relop>', '<character><id_end>']
-input: ['m', '~', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['m', '~', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 get concat production <character><id_end>
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<relop>', '<id_end>', '<character>']
-input: ['m', '~', '~', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['m', '~', '~', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <character> -> ['m']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<relop>', '<id_end>', 'm']
-input: ['m', '~', '~', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['m', '~', '~', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack m
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<relop>', '<id_end>']
-input: ['~', '~', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['~', '~', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <id_end> -> ['~']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<relop>', '~']
-input: ['~', '~', '<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['~', '~', '<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 I found empty symbol ~
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<relop>']
-input: ['<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <relop> -> ['<']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>', '<']
-input: ['<', 'x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['<', 'x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack <
 
 Stack: ['~', '}', '<statement>', ')', ';', '<identifier>']
-input: ['x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <identifier> -> ['<character><id_end>']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<character><id_end>']
-input: ['x', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['x', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 get concat production <character><id_end>
 
 Stack: ['~', '}', '<statement>', ')', ';', '<id_end>', '<character>']
-input: ['x', '~', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['x', '~', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <character> -> ['x']
 
 Stack: ['~', '}', '<statement>', ')', ';', '<id_end>', 'x']
-input: ['x', '~', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['x', '~', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack x
 
 Stack: ['~', '}', '<statement>', ')', ';', '<id_end>']
-input: ['~', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['~', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 Use production <id_end> -> ['~']
 
 Stack: ['~', '}', '<statement>', ')', ';', '~']
-input: ['~', ';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: ['~', ';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 I found empty symbol ~
 Stack: ['~', '}', '<statement>', ')', ';']
-input: [';', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+input: [';', 'pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
 pop from stack ;
+
+Stack: ['~', '}', '<statement>', ')']
+input: ['pp', ')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']
+Error: Wrong terminal on input str pp
+Skip pp from input str!
 
 Stack: ['~', '}', '<statement>', ')']
 input: [')', '{', 'int', 'x', '=', '3', ';', '}', '}', '~']

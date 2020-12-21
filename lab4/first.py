@@ -48,10 +48,10 @@ def get_first(rules_dict):
     :return:
     """
     first_dict = {}
-    print()
+    # print()
     for key in rules_dict.keys():
         ans = find_set_first(rules_dict[key], rules_dict)
-        print(f'ANS{key}: ', ans)
+        # print(f'ANS{key}: ', ans)
 
         first = set()
         for nonterm, terms in ans:
@@ -63,5 +63,5 @@ def get_first(rules_dict):
 
         first_dict[key] |= first
 
-    print('\nFIRST:', first_dict)
+    print('FIRST:', first_dict)
     return first_dict
