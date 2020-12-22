@@ -1,2 +1,1 @@
-scan a
- print a
+scan a ;

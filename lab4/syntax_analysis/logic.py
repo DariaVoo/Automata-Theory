@@ -82,5 +82,7 @@ def predictive_analysis(table: pd.DataFrame, input_str, terminals, file_name_log
 
     print("----------------------------\nDone!")
     print(f'Count mistakes: {count_mistakes}')
-
-
+    if count_mistakes == 0:
+        return True
+    else:
+        return False

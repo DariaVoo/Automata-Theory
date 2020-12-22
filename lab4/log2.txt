@@ -1,0 +1,51 @@
+
+Stack: ['~', '<program>']
+input: ['scan', 'a', ';', '~']
+Use production <program> -> ['<statement>']
+
+Stack: ['~', '<statement>']
+input: ['scan', 'a', ';', '~']
+Use production <statement> -> ['<statement>', '<scan>']
+
+Stack: ['~', '<statement>', '<scan>']
+input: ['scan', 'a', ';', '~']
+Use production <scan> -> [';', '<identifier>', 'scan']
+
+Stack: ['~', '<statement>', ';', '<identifier>', 'scan']
+input: ['scan', 'a', ';', '~']
+pop from stack scan
+
+Stack: ['~', '<statement>', ';', '<identifier>']
+input: ['a', ';', '~']
+Use production <identifier> -> ['<character><id_end>']
+
+Stack: ['~', '<statement>', ';', '<character><id_end>']
+input: ['a', ';', '~']
+get concat production <character><id_end>
+
+Stack: ['~', '<statement>', ';', '<id_end>', '<character>']
+input: ['a', '~', ';', '~']
+Use production <character> -> ['a']
+
+Stack: ['~', '<statement>', ';', '<id_end>', 'a']
+input: ['a', '~', ';', '~']
+pop from stack a
+
+Stack: ['~', '<statement>', ';', '<id_end>']
+input: ['~', ';', '~']
+Use production <id_end> -> ['~']
+
+Stack: ['~', '<statement>', ';', '~']
+input: ['~', ';', '~']
+I found empty symbol ~
+Stack: ['~', '<statement>', ';']
+input: [';', '~']
+pop from stack ;
+
+Stack: ['~', '<statement>']
+input: ['~']
+Use production <statement> -> ['~']
+
+Stack: ['~', '~']
+input: ['~']
+I found empty symbol ~
