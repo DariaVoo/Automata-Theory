@@ -18,7 +18,6 @@ def error_handler(error_msg, count_mistakes, index, f, stack, input_str):
 
 def predictive_analysis(table: pd.DataFrame, input_str, terminals, file_name_log):
     stack = [EMPTY_STR_SYMB, '<program>']
-    input_str = input_str.split()
     index = 0
     as_flag = False
     count_mistakes = 0

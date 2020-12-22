@@ -1,0 +1,2 @@
+scan a
+ print a

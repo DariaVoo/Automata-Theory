@@ -121,4 +121,5 @@ def get_input(file_name):
     new_str = input_str.replace('\n', '')
     new_str += ' ' + EMPTY_STR_SYMB
     print(f'Input: {new_str}')
+    new_str = new_str.split()
     return new_str
