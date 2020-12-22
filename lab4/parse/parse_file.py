@@ -77,12 +77,6 @@ def parse_file(file_name):
     main_rules: list[Rule] = []
 
     str_rules = read_file(file_name).split(sep='\n')
-    # rules.remove("")
-
-    # valid = [re.fullmatch(r'[A-Z]>*', s) for s in rules]
-    # if None in valid:
-    #     print("Invalid transitions:", rules[valid.index(None)])
-    #     return None
 
     # Разбираем каждое правило на левую и правую часть
     # и составляем лист из правил Rule

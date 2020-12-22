@@ -1,8 +1,10 @@
+from interpreter import main_loop
 from syntax_analysis.first import get_first
 from syntax_analysis.follow import get_follow
 from syntax_analysis.logic import predictive_analysis
 from syntax_analysis.make_table import make_table
 from parse.parse_file import parse_file, get_terminals_and_non, make_transitions, get_input
+
 
 
 def syntax_analysis(grammar_file='grammar', program_file='test.txt', log_file='log.txt'):
@@ -25,7 +27,10 @@ def main():
         return None
 
     input_str = get_input('test2.txt')
+    varaibles = {}
+    main_loop(input_str, 0, varaibles)
     print()
+
 
 if __name__ == '__main__':
     main()
