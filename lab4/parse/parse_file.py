@@ -1,7 +1,7 @@
 import copy
 import re
 
-from Transition import Rule, Transition
+from Rule import Rule
 from parse.file_op import read_file
 
 PARTS_RULE_SEPARATOR = '>'
