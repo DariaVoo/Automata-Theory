@@ -1,3 +1,6 @@
+from funs.get_var import get_var
+
+
 def fun_print(input_str, index, variable: dict):
     while input_str[index] != ';':
         if input_str[index] == '”':     # если это строка
@@ -7,7 +10,7 @@ def fun_print(input_str, index, variable: dict):
                 index += 1
             print()
         else:   # если это переменная
-            print(variable[input_str[index]])
+            print(get_var([input_str[index]], variable))
 
         index += 1
 

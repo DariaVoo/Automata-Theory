@@ -1,3 +1,5 @@
+import re
+
 from funs.RULES import RULES
 from parse.parse_file import EMPTY_STR_SYMB
 
@@ -10,6 +12,9 @@ def get_nex_lexem(input_str, index):
     elif current == EMPTY_STR_SYMB:
         print("END OF PROGRAM!")
         return None, index
+    elif re.search(r"[\+\-*\/]", current):
+        token = 'expression'
+        return token, index
     else:
         print(f"Error in interpreter, found: {input_str[index]}")
         return None, index
