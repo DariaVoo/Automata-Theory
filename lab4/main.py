@@ -20,8 +20,8 @@ def syntax_analysis(grammar_file='grammar', program_file='test.txt', log_file='l
 
 
 def main():
+    sa = True
     sa = syntax_analysis('grammar2', 'test2.txt', 'log2.txt')
-
     if not sa:
         print('please, FIX THE ERRORS! NOW!')
         return None

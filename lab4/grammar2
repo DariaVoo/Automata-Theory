@@ -12,7 +12,7 @@
 <assign>: <identifier> ‘=’ <expression>
 <string>: ‘”’ ‘str’ ‘”’
 <print>: ‘print’ <print_end> ‘;’
-<print_end>: <string> | <expression> | <string> ‘,’ <print_end> | <expression> ‘,’ <print_end>
+<print_end>: <string> | <expression> | <string> ‘,’ <print_end> | <expression> ‘,’ <print_end> | <identifier>
 <scan>: ‘scan’ <identifier> ‘;’
 <for>: ‘for’ <identifier> ‘=’ <expression> ‘to’ <expression> | ‘for’ <identifier> ‘=’ <expression> ‘downto’ <expression>
 <if>: ‘if’ <bool_expression>

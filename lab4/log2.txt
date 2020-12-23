@@ -1,19 +1,62 @@
 
 Stack: ['~', '<program>']
-input: ['scan', 'a', ';', '~']
+input: ['scan', 'a', ';', 'print', 'a', ';', '~']
 Use production <program> -> ['<statement>']
 
 Stack: ['~', '<statement>']
-input: ['scan', 'a', ';', '~']
+input: ['scan', 'a', ';', 'print', 'a', ';', '~']
 Use production <statement> -> ['<statement>', '<scan>']
 
 Stack: ['~', '<statement>', '<scan>']
-input: ['scan', 'a', ';', '~']
+input: ['scan', 'a', ';', 'print', 'a', ';', '~']
 Use production <scan> -> [';', '<identifier>', 'scan']
 
 Stack: ['~', '<statement>', ';', '<identifier>', 'scan']
-input: ['scan', 'a', ';', '~']
+input: ['scan', 'a', ';', 'print', 'a', ';', '~']
 pop from stack scan
+
+Stack: ['~', '<statement>', ';', '<identifier>']
+input: ['a', ';', 'print', 'a', ';', '~']
+Use production <identifier> -> ['<character><id_end>']
+
+Stack: ['~', '<statement>', ';', '<character><id_end>']
+input: ['a', ';', 'print', 'a', ';', '~']
+get concat production <character><id_end>
+
+Stack: ['~', '<statement>', ';', '<id_end>', '<character>']
+input: ['a', '~', ';', 'print', 'a', ';', '~']
+Use production <character> -> ['a']
+
+Stack: ['~', '<statement>', ';', '<id_end>', 'a']
+input: ['a', '~', ';', 'print', 'a', ';', '~']
+pop from stack a
+
+Stack: ['~', '<statement>', ';', '<id_end>']
+input: ['~', ';', 'print', 'a', ';', '~']
+Use production <id_end> -> ['~']
+
+Stack: ['~', '<statement>', ';', '~']
+input: ['~', ';', 'print', 'a', ';', '~']
+I found empty symbol ~
+Stack: ['~', '<statement>', ';']
+input: [';', 'print', 'a', ';', '~']
+pop from stack ;
+
+Stack: ['~', '<statement>']
+input: ['print', 'a', ';', '~']
+Use production <statement> -> ['<statement>', '<print>']
+
+Stack: ['~', '<statement>', '<print>']
+input: ['print', 'a', ';', '~']
+Use production <print> -> [';', '<print_end>', 'print']
+
+Stack: ['~', '<statement>', ';', '<print_end>', 'print']
+input: ['print', 'a', ';', '~']
+pop from stack print
+
+Stack: ['~', '<statement>', ';', '<print_end>']
+input: ['a', ';', '~']
+Use production <print_end> -> ['<identifier>']
 
 Stack: ['~', '<statement>', ';', '<identifier>']
 input: ['a', ';', '~']
