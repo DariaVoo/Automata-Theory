@@ -1,6 +1,6 @@
 def fun_scan(input_str, index, variable: dict):
     a = input("\nI want a scan!\t")
-    var_name = input_str[index + 1]
+    var_name = input_str[index]
     variable[var_name] = a
 
     from interpreter import main_loop

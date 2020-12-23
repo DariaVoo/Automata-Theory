@@ -1,2 +1,3 @@
 scan a ;
+print ” kmkkmk ” ;
 print a ;

@@ -6,7 +6,6 @@ from syntax_analysis.make_table import make_table
 from parse.parse_file import parse_file, get_terminals_and_non, make_transitions, get_input
 
 
-
 def syntax_analysis(grammar_file='grammar', program_file='test.txt', log_file='log.txt'):
     rules, main_rules = parse_file(grammar_file)
     terminals, nonterminals = get_terminals_and_non(main_rules)
@@ -21,7 +20,7 @@ def syntax_analysis(grammar_file='grammar', program_file='test.txt', log_file='l
 
 def main():
     sa = True
-    sa = syntax_analysis('grammar2', 'test2.txt', 'log2.txt')
+    # sa = syntax_analysis('grammar2', 'test2.txt', 'log2.txt')
     if not sa:
         print('please, FIX THE ERRORS! NOW!')
         return None
