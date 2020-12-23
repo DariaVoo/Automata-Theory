@@ -34,7 +34,7 @@ def fun_for(input_str, index, variable: dict):
 
     if input_str[index] == '}':
         index += 1
-
+    # проверяем на вложенность, если вложенный просто возвращаем
     if input_str[index] == '}':
         return input_str, index, variable
 

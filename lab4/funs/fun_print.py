@@ -1,4 +1,4 @@
-from funs.get_var import get_var
+from funs.get_var import get_value
 
 
 def fun_print(input_str, index, variable: dict):
@@ -10,7 +10,7 @@ def fun_print(input_str, index, variable: dict):
                 index += 1
             print()
         else:   # если это переменная
-            print(get_var([input_str[index]], variable))
+            print(get_value([input_str[index]], variable))
 
         index += 1
 

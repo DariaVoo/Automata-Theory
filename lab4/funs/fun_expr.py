@@ -1,6 +1,6 @@
 import re
 
-from funs.get_var import get_var
+from funs.get_var import get_value
 
 
 def do_exp(a, b, op: str):
@@ -34,11 +34,11 @@ def get_term(expr, variable):
     elif len(symbs) == 1:
         expr_ = expr.split(sep=symbs[0])
         if expr_[0][0] not in nums:
-            a = int(get_var([expr_[0]], variable))
+            a = int(get_value([expr_[0]], variable))
         else:
             a = int(expr_[0])
         if expr_[1][0] not in nums:
-            b = (get_var([expr_[1]], variable))
+            b = (get_value([expr_[1]], variable))
         else:
             b = int(expr_[1])
 

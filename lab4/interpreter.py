@@ -15,6 +15,9 @@ def get_nex_lexem(input_str, index):
     elif re.search(r"[\+\-*\/]", current):
         token = 'expression'
         return token, index
+    elif re.search(r"[><==!=]", current):
+        token = 'bool_expression'
+        return token, index
     else:
         print(f"Error in interpreter, found: {input_str[index]}")
         return None, index
