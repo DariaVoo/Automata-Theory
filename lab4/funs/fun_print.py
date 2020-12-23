@@ -1,3 +1,6 @@
+import re
+
+from funs.fun_expr import fun_expr
 from funs.get_var import get_value
 
 
@@ -9,9 +12,13 @@ def fun_print(input_str, index, variable: dict):
                 print(input_str[index], end=' ')
                 index += 1
             print()
+        elif input_str[index] == ',':   # если несколько параметров
+            index += 1
+        elif re.search(r'[\+\-*\/()]', input_str[index]):   # если несколько параметров
+            input_str, index, variable = fun_expr(input_str, index, variable)
+            print(input_str[index])
         else:   # если это переменная
             print(get_value(input_str[index], variable))
-
         index += 1
 
     index += 1
