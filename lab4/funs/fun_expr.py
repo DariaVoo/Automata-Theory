@@ -51,7 +51,7 @@ def get_term(expr, variable):
             op = expr[sep_index]
             a_str = expr[:sep_index]
             b_str = expr[sep_index + 2:sep_index_end]
-            a, b = get_term(a_str), get_term(b_str)
+            a, b = get_term(a_str, variable), get_term(b_str, variable)
             ans = do_exp(a, b, op)
             return ans
         else:
