@@ -3,8 +3,9 @@ def fun_print(input_str, index, variable: dict):
         if input_str[index] == '”':     # если это строка
             index += 1
             while input_str[index] != '”':
-                print(input_str[index])
+                print(input_str[index], end=' ')
                 index += 1
+            print()
         else:   # если это переменная
             print(variable[input_str[index]])
 

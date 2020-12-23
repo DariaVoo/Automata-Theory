@@ -25,7 +25,7 @@ def fun_for(input_str, index, variable: dict):
     index += 1
     index_begin = index
 
-    while variable[var_name] < target:
+    while variable[var_name] != target:
         index = index_begin
         input_str, index, variable = main_loop(input_str, index, variable)
         variable[var_name] += step
