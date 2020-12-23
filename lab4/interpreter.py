@@ -6,7 +6,7 @@ def get_nex_lexem(input_str, index):
     current = input_str[index]
     if current.find('‘') and current in RULES.keys():
         token = current
-        print(f'token = {token}')
+        # print(f'token = {token}')
     elif current == EMPTY_STR_SYMB:
         token = None
         print("END OF PROGRAM!")
@@ -21,4 +21,6 @@ def main_loop(input_str, index, variable):
 
     if token:
         token = RULES[token]
-        token(input_str, index, variable)
+        input_str, index, variable = token(input_str, index, variable)
+
+    return input_str, index, variable

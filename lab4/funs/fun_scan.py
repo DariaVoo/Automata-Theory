@@ -3,6 +3,10 @@ def fun_scan(input_str, index, variable: dict):
     var_name = input_str[index]
     variable[var_name] = a
 
+    index += 2
+    if input_str[index] == '}':
+        return input_str, index, variable
+
     from interpreter import main_loop
-    main_loop(input_str, index + 2, variable)
+    return main_loop(input_str, index, variable)
 

@@ -11,5 +11,9 @@ def fun_print(input_str, index, variable: dict):
         index += 1
 
     index += 1
+    if input_str[index] == '}':
+        return input_str, index, variable
+
     from interpreter import main_loop
-    main_loop(input_str, index, variable)
+    return main_loop(input_str, index, variable)
+
