@@ -4,6 +4,8 @@ from funs.get_var import get_value
 
 
 def do_bool_exp(a, b, op: str):
+    a = str(a)
+    b = str(b)
     if op == '<':
         return a < b
     elif op == '>':
@@ -24,15 +26,17 @@ def get_bool_term(expr, variable):
     symbs = re.findall(r"[=<>!]", expr)
 
     if len(symbs) == 0:
+        if expr in variable.keys():
+            expr = get_value(expr, variable)
         return expr
     elif len(symbs) == 1:
         expr_ = expr.split(sep=symbs[0])
         if expr_[0][0] in variable.keys():
-            a = get_value([expr_[0]], variable)
+            a = get_value(expr_[0], variable)
         else:
             a = expr_[0]
         if expr_[1][0] in variable.keys():
-            b = get_value([expr_[1]], variable)
+            b = get_value(expr_[1], variable)
         else:
             b = expr_[1]
 
