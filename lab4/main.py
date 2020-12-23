@@ -25,7 +25,7 @@ def main():
         print('please, FIX THE ERRORS! NOW!')
         return None
 
-    input_str = get_input('test22.txt')
+    input_str = get_input('test2.txt')
     varaibles = {}
     main_loop(input_str, 0, varaibles)
     print()

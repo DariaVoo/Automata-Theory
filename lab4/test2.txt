@@ -1,9 +1,9 @@
-for i = 2 to 4
+for i = 2+1 to 4
 {
     print ” for with to ” ;
     print i ;
     print ” for with down to ” ;
-    for j = 8 downto 6
+    for j = 8 downto 8-3
     {
         print j ;
     }

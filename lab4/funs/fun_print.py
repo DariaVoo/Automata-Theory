@@ -10,7 +10,7 @@ def fun_print(input_str, index, variable: dict):
                 index += 1
             print()
         else:   # если это переменная
-            print(get_value([input_str[index]], variable))
+            print(get_value(input_str[index], variable))
 
         index += 1
 

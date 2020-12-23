@@ -70,6 +70,6 @@ def get_term(expr, variable):
 def fun_expr(input_str, index, variable: dict):
     expr: str = input_str[index]
     ans = get_term(expr, variable)
-    print(f'Ans: {input_str[index]} = {ans}')
-    input_str[index] = ans
+    print(f'Ans: {input_str[index]} => {ans}')
+    input_str[index] = str(ans)
     return input_str, index, variable
