@@ -1,94 +1,48 @@
 
 Stack: ['~', '<program>']
-input: ['scan', 'a', ';', 'print', 'a', ';', '~']
+input: ['for', 'i', '=', '2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
 Use production <program> -> ['<statement>']
 
 Stack: ['~', '<statement>']
-input: ['scan', 'a', ';', 'print', 'a', ';', '~']
-Use production <statement> -> ['<statement>', '<scan>']
+input: ['for', 'i', '=', '2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
+Use production <statement> -> ['}', '<statement>', '{', '<for>']
 
-Stack: ['~', '<statement>', '<scan>']
-input: ['scan', 'a', ';', 'print', 'a', ';', '~']
-Use production <scan> -> [';', '<identifier>', 'scan']
+Stack: ['~', '}', '<statement>', '{', '<for>']
+input: ['for', 'i', '=', '2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
+Use production <for> -> ['<expression>', 'downto', '<expression>', '=', '<identifier>', 'for']
 
-Stack: ['~', '<statement>', ';', '<identifier>', 'scan']
-input: ['scan', 'a', ';', 'print', 'a', ';', '~']
-pop from stack scan
+Stack: ['~', '}', '<statement>', '{', '<expression>', 'downto', '<expression>', '=', '<identifier>', 'for']
+input: ['for', 'i', '=', '2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
+pop from stack for
 
-Stack: ['~', '<statement>', ';', '<identifier>']
-input: ['a', ';', 'print', 'a', ';', '~']
+Stack: ['~', '}', '<statement>', '{', '<expression>', 'downto', '<expression>', '=', '<identifier>']
+input: ['i', '=', '2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
 Use production <identifier> -> ['<character><id_end>']
 
-Stack: ['~', '<statement>', ';', '<character><id_end>']
-input: ['a', ';', 'print', 'a', ';', '~']
+Stack: ['~', '}', '<statement>', '{', '<expression>', 'downto', '<expression>', '=', '<character><id_end>']
+input: ['i', '=', '2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
 get concat production <character><id_end>
 
-Stack: ['~', '<statement>', ';', '<id_end>', '<character>']
-input: ['a', '~', ';', 'print', 'a', ';', '~']
-Use production <character> -> ['a']
+Stack: ['~', '}', '<statement>', '{', '<expression>', 'downto', '<expression>', '=', '<id_end>', '<character>']
+input: ['i', '~', '=', '2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
+Use production <character> -> ['i']
 
-Stack: ['~', '<statement>', ';', '<id_end>', 'a']
-input: ['a', '~', ';', 'print', 'a', ';', '~']
-pop from stack a
+Stack: ['~', '}', '<statement>', '{', '<expression>', 'downto', '<expression>', '=', '<id_end>', 'i']
+input: ['i', '~', '=', '2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
+pop from stack i
 
-Stack: ['~', '<statement>', ';', '<id_end>']
-input: ['~', ';', 'print', 'a', ';', '~']
+Stack: ['~', '}', '<statement>', '{', '<expression>', 'downto', '<expression>', '=', '<id_end>']
+input: ['~', '=', '2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
 Use production <id_end> -> ['~']
 
-Stack: ['~', '<statement>', ';', '~']
-input: ['~', ';', 'print', 'a', ';', '~']
+Stack: ['~', '}', '<statement>', '{', '<expression>', 'downto', '<expression>', '=', '~']
+input: ['~', '=', '2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
 I found empty symbol ~
-Stack: ['~', '<statement>', ';']
-input: [';', 'print', 'a', ';', '~']
-pop from stack ;
+Stack: ['~', '}', '<statement>', '{', '<expression>', 'downto', '<expression>', '=']
+input: ['=', '2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
+pop from stack =
 
-Stack: ['~', '<statement>']
-input: ['print', 'a', ';', '~']
-Use production <statement> -> ['<statement>', '<print>']
-
-Stack: ['~', '<statement>', '<print>']
-input: ['print', 'a', ';', '~']
-Use production <print> -> [';', '<print_end>', 'print']
-
-Stack: ['~', '<statement>', ';', '<print_end>', 'print']
-input: ['print', 'a', ';', '~']
-pop from stack print
-
-Stack: ['~', '<statement>', ';', '<print_end>']
-input: ['a', ';', '~']
-Use production <print_end> -> ['<identifier>']
-
-Stack: ['~', '<statement>', ';', '<identifier>']
-input: ['a', ';', '~']
-Use production <identifier> -> ['<character><id_end>']
-
-Stack: ['~', '<statement>', ';', '<character><id_end>']
-input: ['a', ';', '~']
-get concat production <character><id_end>
-
-Stack: ['~', '<statement>', ';', '<id_end>', '<character>']
-input: ['a', '~', ';', '~']
-Use production <character> -> ['a']
-
-Stack: ['~', '<statement>', ';', '<id_end>', 'a']
-input: ['a', '~', ';', '~']
-pop from stack a
-
-Stack: ['~', '<statement>', ';', '<id_end>']
-input: ['~', ';', '~']
-Use production <id_end> -> ['~']
-
-Stack: ['~', '<statement>', ';', '~']
-input: ['~', ';', '~']
-I found empty symbol ~
-Stack: ['~', '<statement>', ';']
-input: [';', '~']
-pop from stack ;
-
-Stack: ['~', '<statement>']
-input: ['~']
-Use production <statement> -> ['~']
-
-Stack: ['~', '~']
-input: ['~']
-I found empty symbol ~
+Stack: ['~', '}', '<statement>', '{', '<expression>', 'downto', '<expression>']
+input: ['2+1', 'to', '4', '{', 'print', '”', 'for', 'with', 'to', '”', ';', 'print', 'i', ';', 'print', '”', 'for', 'with', 'down', 'to', '”', ';', 'for', 'j', '=', '8', 'downto', '8-3', '{', 'print', 'j', ';', '}', '}', 'print', '12/6*12-2-(10+56)', ';', '~']
+Error, table is empty!
+Skip 2+1 from input str!

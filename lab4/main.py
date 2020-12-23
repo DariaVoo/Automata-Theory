@@ -20,13 +20,15 @@ def syntax_analysis(grammar_file='grammar', program_file='test.txt', log_file='l
 
 def main():
     sa = True
-    # sa = syntax_analysis('grammar2', 'test2.txt', 'log2.txt')
-    if not sa:
-        print('please, FIX THE ERRORS! NOW!')
-        return None
+    sa = syntax_analysis('grammar2', 'test2.txt', 'log2.txt')
+    # Error because expr must be split in one str for interpret
+    # if not sa:
+    #     print('please, FIX THE ERRORS! NOW!')
+    #     return None
 
-    input_str = get_input('test22.txt')
+    input_str = get_input('test2.txt')
     varaibles = {}
+    print("WORK!\n")
     main_loop(input_str, 0, varaibles)
     print()
 

@@ -4,7 +4,7 @@ from funs.RULES import RULES
 from parse.parse_file import EMPTY_STR_SYMB
 
 
-def get_nex_lexem(input_str, index):
+def get_next_lexem(input_str, index):
     current = input_str[index]
     if current.find('‘') and current in RULES.keys():
         token = current
@@ -25,7 +25,7 @@ def get_nex_lexem(input_str, index):
 
 
 def main_loop(input_str, index, variable):
-    token, index = get_nex_lexem(input_str, index)
+    token, index = get_next_lexem(input_str, index)
 
     if token:
         token = RULES[token]
