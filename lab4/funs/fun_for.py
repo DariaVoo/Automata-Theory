@@ -35,5 +35,8 @@ def fun_for(input_str, index, variable: dict):
     if input_str[index] == '}':
         index += 1
 
+    if input_str[index] == '}':
+        return input_str, index, variable
+
     return main_loop(input_str, index, variable)
 

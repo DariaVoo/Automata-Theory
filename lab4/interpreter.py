@@ -8,11 +8,11 @@ def get_nex_lexem(input_str, index):
         token = current
         # print(f'token = {token}')
     elif current == EMPTY_STR_SYMB:
-        token = None
         print("END OF PROGRAM!")
+        return None, index
     else:
-        token = None
-        print("Error in interpreter")
+        print(f"Error in interpreter, found: {input_str[index]}")
+        return None, index
     return token, index + 1
 
 

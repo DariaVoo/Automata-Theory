@@ -1,10 +1,10 @@
-for i = 2 to 6
+for i = 2 to 4
 {
-print i ;
-}
-print ” for with down to ” ;
-for i = 8 downto 6
-{
-print ” Hehe ” ;
-print i ;
+    print ” for with to ” ;
+    print i ;
+    print ” for with down to ” ;
+    for j = 8 downto 6
+    {
+        print j ;
+    }
 }
