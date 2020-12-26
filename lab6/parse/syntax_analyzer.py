@@ -16,10 +16,17 @@ def syntax_analyzer(root: ET.Element, block: Block):
             block.current_cols = 0
 
     if root.tag == 'block':
-        block = Block(int(root.attrib['columns']), int(root.attrib['rows']))
+        col = int(root.attrib['columns'])
+        row = int(root.attrib['rows'])
+        if block is not None:
+            err = block.check_new_rows_cols(row, col)
+            if err:
+                print_color_line("1", f'Wrong shape of Block! Wrong count {err}')
+                return False
+        block = Block(col, row)
 
     for elem in root:
-        print(elem.tag, elem.attrib)
+        # print(elem.tag, elem.attrib)
         if block is not None:
             ans = block.add_rows_cols(elem.tag)
             if ans:

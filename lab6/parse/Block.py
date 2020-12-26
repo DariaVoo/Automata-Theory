@@ -22,3 +22,10 @@ class Block:
         elif self.check_condition_col():
             return f'columns! Must be {self.max_cols}, Get: {self.current_cols}'
         return False
+
+    def check_new_rows_cols(self, row, col):
+        if col > int(self.max_cols):
+            return f'rows! Must be {self.max_rows}, Get: {self.current_rows}'
+        elif row > int(self.max_rows):
+            return f'columns! Must be {self.max_cols}, Get: {self.current_cols}'
+        return False
