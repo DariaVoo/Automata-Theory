@@ -1,7 +1,6 @@
 import copy
 import xml.etree.ElementTree as ET
 
-from logic.COLORS import COLORS
 from parse.Block import Block
 from parse.print_color_line import print_color_line
 
