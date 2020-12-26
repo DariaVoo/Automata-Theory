@@ -10,6 +10,7 @@ COLORS = {
     '7': '\033[37m',    # white
 }
 
+
 BGCOLORS = {
     '00': '\0330m',     # default
     '0': '\033[40m',    # black
