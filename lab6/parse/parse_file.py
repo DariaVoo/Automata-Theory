@@ -8,7 +8,8 @@ def parse_file(file_name):
     root = mytree.getroot()
 
     print(root)
-    if syntax_analyzer(root, None):
+    s = syntax_analyzer(root, None)
+    if s:
         print('All is OK!')
         return root
     else:

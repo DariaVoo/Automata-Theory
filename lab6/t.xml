@@ -10,17 +10,6 @@
                                 1 3
                         </row>
         </column>
-        <column width="21" valign="center">
-                        <row halign="center" bgcolor="4" textcolor="3" height="5">
-                                1 1
-                        </row>
-                        <row halign="center" bgcolor="6" textcolor="5" height="10">
-                                1 2
-                        </row>
-                        <row halign="left" bgcolor="9" textcolor="5">
-                                1 3
-                        </row>
-        </column>
         <column width="31" valign="center">
                 <row halign="center" bgcolor="8" textcolor="3" height="4">
                         2 1

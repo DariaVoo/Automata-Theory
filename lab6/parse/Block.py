@@ -21,3 +21,4 @@ class Block:
             return f'rows! Must be {self.max_rows}, Get: {self.current_rows}'
         elif self.check_condition_col():
             return f'columns! Must be {self.max_cols}, Get: {self.current_cols}'
+        return False
