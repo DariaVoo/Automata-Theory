@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 
 from logic.COLORS import COLORS
 from parse.Block import Block
+from parse.print_color_line import print_color_line
 
 
 def syntax_analyzer(root: ET.Element, block: Block):
@@ -23,7 +24,7 @@ def syntax_analyzer(root: ET.Element, block: Block):
         if block is not None:
             ans = block.add_rows_cols(elem.tag)
             if ans:
-                print(f'{COLORS["3"]} Wrong count of {ans}')
+                print_color_line("1", f'Wrong count of {ans}')
                 return False
 
         ans_ = ans_ and syntax_analyzer(elem, block)
