@@ -16,6 +16,7 @@ def syntax_analyzer(root: ET.Element, block: Block):
             block.current_cols = 0
 
     if root.tag == 'block':
+        # Проверяем, что размеры вложенного блока не выходят за размеры исходного
         col = int(root.attrib['columns'])
         row = int(root.attrib['rows'])
         if block is not None:
@@ -26,7 +27,7 @@ def syntax_analyzer(root: ET.Element, block: Block):
         block = Block(col, row)
 
     for elem in root:
-        # print(elem.tag, elem.attrib)
+        # Проверяем соответствие допустимых строк и столбцов
         if block is not None:
             ans = block.add_rows_cols(elem.tag)
             if ans:
