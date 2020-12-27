@@ -49,6 +49,10 @@ class Text:
             self.height = attrib['height']
 
     def get_text(self, text: str, tag):
+        if tag == 'row':
+            print()
+            return
+
         begin = 0
         while text[begin] == ' ' or text[begin] == '\n' or text[begin] == '\t':
             begin += 1
@@ -62,9 +66,4 @@ class Text:
         templ = f':*{HALIGN[self.halign]}{self.width}'
         template = COLORS[str(self.textcolor)] + BGCOLORS[str(self.bgcolor)] + '{' + templ + '}' + COLORS['00']
 
-        end_symb = ''
-        if tag == 'row':
-            end_symb = '\n'
-        else:
-            end_symb = ' '
-        print(template.format(text), end=end_symb)
+        print(template.format(text), end=' ')
