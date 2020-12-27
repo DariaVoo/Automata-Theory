@@ -1,3 +1,5 @@
+import copy
+
 from logic.Text import Text
 from parse.Block import Block
 from parse.print_color_line import print_color_line
@@ -28,8 +30,9 @@ def find(root, text: Text, block: Block):
             ans = block.add_rows_cols(elem.tag)
 
         if elem.tag == 'column' or elem.tag == 'row':
-            text = Text()
-            text.set_attr(root.attrib)
+            # text = Text()
+            text = copy.deepcopy(text)
+            text.set_attr(elem.attrib)
 
             if set(elem.text) != draft:
                 text.get_text(elem.text)
