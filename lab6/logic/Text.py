@@ -3,7 +3,7 @@ from logic.COLORS import COLORS, BGCOLORS
 HALIGN = {
     'left': '<',
     'center': '^',
-    'right ': '>',
+    'right': '>',
 }
 
 
@@ -48,16 +48,23 @@ class Text:
         if 'height' in attrib.keys():
             self.height = attrib['height']
 
-    def get_text(self, text: str):
+    def get_text(self, text: str, tag):
         begin = 0
-        while text[begin] == ' ' or text[begin] == '\n':
+        while text[begin] == ' ' or text[begin] == '\n' or text[begin] == '\t':
             begin += 1
 
         end = len(text) - 1
-        while text[end] == ' ' or text[end] == '\n':
+        while text[end] == ' ' or text[end] == '\n' or text[end] == '\t':
             end -= 1
+        end += 1
         text = text[begin:end]
 
         templ = f':*{HALIGN[self.halign]}{self.width}'
         template = COLORS[str(self.textcolor)] + BGCOLORS[str(self.bgcolor)] + '{' + templ + '}' + COLORS['00']
-        print(template.format(text))
+
+        end_symb = ''
+        if tag == 'row':
+            end_symb = '\n'
+        else:
+            end_symb = ' '
+        print(template.format(text), end=end_symb)

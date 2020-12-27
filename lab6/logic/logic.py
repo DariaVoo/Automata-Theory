@@ -34,8 +34,10 @@ def find(root, text: Text, block: Block):
             text = copy.deepcopy(text)
             text.set_attr(elem.attrib)
 
-            if set(elem.text) != draft:
-                text.get_text(elem.text)
+            if elem.tag == 'column' and set(elem.text) != draft:
+                text.get_text(elem.text, elem.tag)
+            else:
+                print()
 
             a = find(elem, text, block)
 

@@ -7,6 +7,7 @@ def main(name):
     if xml is None:
         return None
     find(xml, None, None)
+    # print("\033[1;1H Hello")
 
 
 if __name__ == '__main__':
