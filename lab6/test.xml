@@ -1,20 +1,35 @@
-<block>
-	<column>
-		<row>
-			<block>
-				<row>
-<column> A </column>
-<column> B </column>
-				</row>
-<column> C </column>
-<column> D </column>
-				<row>
-				</row>
-			</block>
-		</row>
-
-		<row> F </row>
-	</column>
-
-	<column> E	</column>
+<block rows="3" columns="3">
+        <column width="21" valign="center">
+                        <row halign="center" bgcolor="4" textcolor="3" height="5">
+                                1 1
+                        </row>
+                        <row halign="center" bgcolor="6" textcolor="5" height="10">
+                                1 2
+                        </row>
+                        <row halign="left" bgcolor="9" textcolor="5">
+                                1 3
+                        </row>
+        </column>
+		<column width="21" valign="center">
+					<row halign="center" bgcolor="4" textcolor="3" height="5">
+							1 1
+					</row>
+					<row halign="center" bgcolor="6" textcolor="5" height="10">
+							1 2
+					</row>
+					<row halign="left" bgcolor="9" textcolor="5">
+							1 3
+					</row>
+		</column>
+		<column width="21" valign="center">
+					<row halign="center" bgcolor="4" textcolor="3" height="5">
+							1 1
+					</row>
+					<row halign="center" bgcolor="6" textcolor="5" height="10">
+							1 2
+					</row>
+					<row halign="left" bgcolor="9" textcolor="5">
+							1 3
+					</row>
+		</column>
 </block>

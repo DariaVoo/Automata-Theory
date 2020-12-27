@@ -1,19 +1,24 @@
 import copy
-import xml.etree.ElementTree as ET
+import xml.etree.cElementTree as ET
 
 from parse.Block import Block
 from parse.print_color_line import print_color_line
 
 
-def syntax_analyzer(root: ET.Element, block: Block):
-    ans_ = True
+def check_block(block, tag):
     if block is not None:
-        if root.tag == 'column':
+        if tag == 'column':
             block = copy.deepcopy(block)
             block.current_rows = 0
-        elif root.tag == 'row':
+        elif tag == 'row':
             block = copy.deepcopy(block)
             block.current_cols = 0
+    return block
+
+
+def syntax_analyzer(root: ET.Element, block: Block):
+    ans_ = True
+    block = check_block(block, root.tag)
 
     if root.tag == 'block':
         # Проверяем, что размеры вложенного блока не выходят за размеры исходного

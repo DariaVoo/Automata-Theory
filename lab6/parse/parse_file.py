@@ -1,6 +1,5 @@
-import xml.etree.ElementTree as ET
+import xml.etree.cElementTree as ET
 
-from logic.COLORS import COLORS
 from parse.print_color_line import print_color_line
 from parse.syntax_analyzer import syntax_analyzer
 
