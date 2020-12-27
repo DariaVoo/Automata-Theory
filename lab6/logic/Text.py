@@ -52,8 +52,12 @@ class Text:
         begin = 0
         while text[begin] == ' ' or text[begin] == '\n':
             begin += 1
-        text = text[begin:]
+
+        end = len(text) - 1
+        while text[end] == ' ' or text[end] == '\n':
+            end -= 1
+        text = text[begin:end]
 
         templ = f':*{HALIGN[self.halign]}{self.width}'
-        template = COLORS[self.textcolor] + BGCOLORS[self.bgcolor] + '{' + templ + '}' + COLORS['00']
+        template = COLORS[str(self.textcolor)] + BGCOLORS[str(self.bgcolor)] + '{' + templ + '}' + COLORS['00']
         print(template.format(text))

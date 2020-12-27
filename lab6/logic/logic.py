@@ -34,7 +34,7 @@ def find(root, text: Text, block: Block):
             if set(elem.text) != draft:
                 text.get_text(elem.text)
 
-            a = find(root, text, block)
+            a = find(elem, text, block)
 
         # ans_ = ans_ and syntax_analyzer(elem, block)
     return None
